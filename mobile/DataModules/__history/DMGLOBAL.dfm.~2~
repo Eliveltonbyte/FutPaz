@@ -1,0 +1,8 @@
+object DMTABELAS: TDMTABELAS
+  Height = 305
+  Width = 500
+  object Conn: TFDConnection
+    Left = 176
+    Top = 104
+  end
+end
