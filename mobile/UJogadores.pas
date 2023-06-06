@@ -17,6 +17,7 @@ type
     lvAtletas: TListView;
     procedure Image1Click(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure Image2Click(Sender: TObject);
   private
     procedure AddPedido(id, atleta, posicao, status:string);
     procedure ListarTodosAtletas;
@@ -84,6 +85,11 @@ begin
 
     FrmCadAtleta.Show;
 
+end;
+
+procedure TFrmJogador.Image2Click(Sender: TObject);
+begin
+  Close;
 end;
 
 end.

@@ -33,7 +33,10 @@ type
     procedure cbPosicaoTap(Sender: TObject; const Point: TPointF);
     procedure cbPosicaoExit(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure imgVoltarClick(Sender: TObject);
   private
+    procedure LimparCampos;
     { Private declarations }
   public
     { Public declarations }
@@ -111,31 +114,61 @@ begin
         end;
 end;
 
+procedure TFrmCadAtleta.FormShow(Sender: TObject);
+begin
+    if cbPosicao.ItemIndex = 0  then
+        begin
+        imgAtleta.Visible := false;
+        imgGoleiro.Visible := true
+        end
+        else if cbPosicao.ItemIndex >= 1  then
+        begin
+        imgAtleta.Visible := true;
+        imgGoleiro.Visible := false;
+        end;
+end;
+
+procedure TFrmCadAtleta.imgVoltarClick(Sender: TObject);
+begin
+    Close;
+    LimparCampos
+end;
+
+procedure TFrmCadAtleta.LimparCampos;
+begin
+    edtAtleta.Text := '';
+    cbPosicao.ItemIndex := -1;
+    CBSTATUS.ItemIndex := -1;
+end;
+
 procedure TFrmCadAtleta.SpeedButton1Click(Sender: TObject);
 begin
     with DMTABELAS.FDAtletas do
-    begin
-      Active := false;
-      SQL.Clear;
-      SQL.Add('delete from tab_usuario');
-      ExecSql;
-    end;
+      begin
+       Active := false;
+       SQL.Clear;
+       SQL.Add('delete from atletas');
+       ExecSql;
+       end;
 
     //Inserir Atletas...
     with DMTABELAS.FDAtletas do
     begin
       Active := false;
       SQL.Clear;
-      SQL.Add('insert into atletas(id, atleta, posicao, status, foto)');
-      SQL.Add('values(:id, :atleta, posicao, status, :foto )');
+      SQL.Add('insert into atletas(id, atleta, posicao, status)');
+      SQL.Add('values(:id, :atleta, :posicao, :status )');
 
-      ParamByName('id').value := '2';
+      ParamByName('id').value := '5';
       ParamByName('atleta').value := edtAtleta.Text;
-      ParamByName('posicao').value := cbPosicao.ItemIndex;
-      ParamByName('status').value := CBSTATUS.ItemIndex;
-     // ParamByName('foto').Assing(imgAtleta.Bitmap);
+      ParamByName('posicao').value := cbPosicao.Selected.Text;
+      ParamByName('status').value := CBSTATUS.Selected.Text;
+
       ExecSql;
 
+      ShowMessage('Atleta Cadastrado com Sucesso!!');
+
+      LimparCampos;
 
     end;
 end;
