@@ -6,20 +6,30 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Objects,
   FMX.Controls.Presentation, FMX.StdCtrls, FMX.ListView.Types,
-  FMX.ListView.Appearances, FMX.ListView.Adapters.Base, FMX.ListView;
+  FMX.ListView.Appearances, FMX.ListView.Adapters.Base, FMX.ListView, FMX.Edit,
+  FMX.ListBox;
 
 type
   TFrmJogador = class(TForm)
     rectTolbarJogador: TRectangle;
     lbToobar: TLabel;
-    Image1: TImage;
-    Image2: TImage;
+    imgLupa: TImage;
+    imgBack: TImage;
     lvAtletas: TListView;
     Circle1: TCircle;
     imgIconeFlutuante: TImage;
+    rectConsulta: TRectangle;
+    edtNome: TEdit;
+    cbPosicao: TComboBox;
+    lblPosicao: TLabel;
+    lblSituacao: TLabel;
+    CbSituacao: TComboBox;
+    Rectangle1: TRectangle;
+    SpeedButton1: TSpeedButton;
     procedure FormShow(Sender: TObject);
-    procedure Image2Click(Sender: TObject);
+    procedure imgBackClick(Sender: TObject);
     procedure imgIconeFlutuanteClick(Sender: TObject);
+    procedure imgLupaClick(Sender: TObject);
   private
     procedure AddPedido(id, atleta, posicao, status:string);
     procedure ListarTodosAtletas;
@@ -69,7 +79,7 @@ end;
 
 procedure TFrmJogador.ListarTodosAtletas;
 begin
-  AddPedido('0001','Elivelton Carneiro ','Zagueiro','Ativo');
+  AddPedido('0001','Elivelton Carneiro','Zagueiro','Ativo');
   AddPedido('0002','João Guilherme','Meio-Campo','Ativo');
   AddPedido('0003','José Silva','Atacante','Ativo');
   AddPedido('0004','Mateus Jesus','Goleiro','Ativo');
@@ -100,7 +110,12 @@ begin
     ListarTodosAtletas;
 end;
 
-procedure TFrmJogador.Image2Click(Sender: TObject);
+procedure TFrmJogador.imgLupaClick(Sender: TObject);
+begin
+    rectConsulta.Visible := true;
+end;
+
+procedure TFrmJogador.imgBackClick(Sender: TObject);
 begin
   Close;
 end;

@@ -11,7 +11,7 @@ type
   TFrmPrincipal = class(TForm)
     rectToolBar: TRectangle;
     lbToobar: TLabel;
-    Layout1: TLayout;
+    lytPrincipal: TLayout;
     rectMenuJogador: TRectangle;
     lbTituloMenu: TLabel;
     lblDescinfo: TLabel;
