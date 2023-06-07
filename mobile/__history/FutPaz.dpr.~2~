@@ -1,0 +1,16 @@
+program FutPaz;
+
+uses
+  System.StartUpCopy,
+  FMX.Forms,
+  UPrincipal in 'UPrincipal.pas' {FrmPrincipal},
+  UJogadores in 'UJogadores.pas' {FrmJogador};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.CreateForm(TFrmPrincipal, FrmPrincipal);
+  Application.CreateForm(TFrmJogador, FrmJogador);
+  Application.Run;
+end.

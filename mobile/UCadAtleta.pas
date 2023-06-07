@@ -143,23 +143,23 @@ end;
 
 procedure TFrmCadAtleta.SpeedButton1Click(Sender: TObject);
 begin
-    with DMTABELAS.FDAtletas do
-      begin
-       Active := false;
-       SQL.Clear;
-       SQL.Add('delete from atletas');
-       ExecSql;
-       end;
+  {  with DMTABELAS.FDAtletas do
+        begin
+               Active := false;
+                      SQL.Clear;
+                             SQL.Add('delete from atletas');
+                                    ExecSql;
+                                           end;}
 
     //Inserir Atletas...
     with DMTABELAS.FDAtletas do
     begin
       Active := false;
       SQL.Clear;
-      SQL.Add('insert into atletas(id, atleta, posicao, status)');
-      SQL.Add('values(:id, :atleta, :posicao, :status )');
+      SQL.Add('insert into atletas(atleta, posicao, status)');
+      SQL.Add('values( :atleta, :posicao, :status )');
 
-      ParamByName('id').value := '5';
+     // ParamByName('id').value := '5';
       ParamByName('atleta').value := edtAtleta.Text;
       ParamByName('posicao').value := cbPosicao.Selected.Text;
       ParamByName('status').value := CBSTATUS.Selected.Text;

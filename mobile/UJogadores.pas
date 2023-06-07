@@ -15,9 +15,11 @@ type
     Image1: TImage;
     Image2: TImage;
     lvAtletas: TListView;
-    procedure Image1Click(Sender: TObject);
+    Circle1: TCircle;
+    imgIconeFlutuante: TImage;
     procedure FormShow(Sender: TObject);
     procedure Image2Click(Sender: TObject);
+    procedure imgIconeFlutuanteClick(Sender: TObject);
   private
     procedure AddPedido(id, atleta, posicao, status:string);
     procedure ListarTodosAtletas;
@@ -72,24 +74,44 @@ begin
   AddPedido('0003','José Silva','Atacante','Ativo');
   AddPedido('0004','Mateus Jesus','Goleiro','Ativo');
   AddPedido('0005','Otavio Ferreira','Zagueiro','Desligado');
+  AddPedido('0001','Elivelton Carneiro ','Zagueiro','Ativo');
+  AddPedido('0002','João Guilherme','Meio-Campo','Ativo');
+  AddPedido('0003','José Silva','Atacante','Ativo');
+  AddPedido('0004','Mateus Jesus','Goleiro','Ativo');
+  AddPedido('0005','Otavio Ferreira','Zagueiro','Desligado');
+  AddPedido('0001','Elivelton Carneiro ','Zagueiro','Ativo');
+  AddPedido('0002','João Guilherme','Meio-Campo','Ativo');
+  AddPedido('0003','José Silva','Atacante','Ativo');
+  AddPedido('0004','Mateus Jesus','Goleiro','Ativo');
+  AddPedido('0005','Otavio Ferreira','Zagueiro','Desligado');
+  AddPedido('0001','Elivelton Carneiro ','Zagueiro','Ativo');
+  AddPedido('0002','João Guilherme','Meio-Campo','Ativo');
+  AddPedido('0003','José Silva','Atacante','Ativo');
+  AddPedido('0004','Mateus Jesus','Goleiro','Ativo');
+  AddPedido('0005','Otavio Ferreira','Zagueiro','Desligado');
+  AddPedido('0001','Elivelton Carneiro ','Zagueiro','Ativo');
+  AddPedido('0002','João Guilherme','Meio-Campo','Ativo');
+  AddPedido('0003','José Silva','Atacante','Ativo');
+  AddPedido('0004','Mateus Jesus','Goleiro','Ativo');
+  AddPedido('0005','Otavio Ferreira','Zagueiro','Desligado');
 end;
 procedure TFrmJogador.FormShow(Sender: TObject);
 begin
     ListarTodosAtletas;
 end;
 
-procedure TFrmJogador.Image1Click(Sender: TObject);
+procedure TFrmJogador.Image2Click(Sender: TObject);
 begin
-      if NOT Assigned(FrmCadAtleta) then
+  Close;
+end;
+
+procedure TFrmJogador.imgIconeFlutuanteClick(Sender: TObject);
+begin
+   if NOT Assigned(FrmCadAtleta) then
         Application.CreateForm(TFrmCadAtleta, FrmCadAtleta);
 
     FrmCadAtleta.Show;
 
-end;
-
-procedure TFrmJogador.Image2Click(Sender: TObject);
-begin
-  Close;
 end;
 
 end.

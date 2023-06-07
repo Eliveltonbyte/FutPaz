@@ -78,11 +78,11 @@ end;
 procedure TDMTABELAS.ConnAfterConnect(Sender: TObject);
 begin
   Conn.ExecSQL('CREATE TABLE IF NOT EXISTS ATLETAS ( ' +
-                            'ID           VARCHAR(20) NOT NULL PRIMARY KEY, ' +
+                            'ID           INTEGER PRIMARY KEY, ' +
                             'ATLETA            VARCHAR(100), ' +
                             'POSICAO          VARCHAR(15), ' +
-                            'STATUS           VARCHAR(20),' +
-                            'FOTO          BLOB);'
+                            'STATUS           VARCHAR(20));'
+
                 );
 
   {Conn.ExecSQL('INSERT OR REPLACE INTO ATLETAS (ID, ATLETA, POSICAO, STATUS, FOTO)' +
