@@ -7,7 +7,7 @@ uses
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Objects,
   FMX.Controls.Presentation, FMX.StdCtrls, FMX.ListView.Types,
   FMX.ListView.Appearances, FMX.ListView.Adapters.Base, FMX.ListView, FMX.Edit,
-  FMX.ListBox;
+  FMX.ListBox, FMX.Ani, FMX.Layouts;
 
 type
   TFrmJogador = class(TForm)
@@ -18,21 +18,29 @@ type
     lvAtletas: TListView;
     Circle1: TCircle;
     imgIconeFlutuante: TImage;
-    rectConsulta: TRectangle;
-    edtNome: TEdit;
-    cbPosicao: TComboBox;
-    lblPosicao: TLabel;
-    lblSituacao: TLabel;
-    CbSituacao: TComboBox;
-    Rectangle1: TRectangle;
     SpeedButton1: TSpeedButton;
+    lytOpacity: TLayout;
+    rectOpacity: TRectangle;
+    rectConsulta: TRectangle;
+    imgFechar: TImage;
+    edtNome: TEdit;
+    Label1: TLabel;
+    lblStatus: TLabel;
+    cbPosicao: TComboBox;
+    cbStatus: TComboBox;
+    rectBtnConsulta: TRectangle;
+    SpeedButton2: TSpeedButton;
     procedure FormShow(Sender: TObject);
     procedure imgBackClick(Sender: TObject);
     procedure imgIconeFlutuanteClick(Sender: TObject);
     procedure imgLupaClick(Sender: TObject);
+    procedure SpeedButton1Click(Sender: TObject);
+    procedure imgFecharClick(Sender: TObject);
   private
     procedure AddPedido(id, atleta, posicao, status:string);
     procedure ListarTodosAtletas;
+    procedure OpenMenu;
+    procedure CloseMenu;
 
     { Private declarations }
   public
@@ -108,16 +116,45 @@ end;
 procedure TFrmJogador.FormShow(Sender: TObject);
 begin
     ListarTodosAtletas;
+    //
+end;
+
+procedure TFrmJogador.OpenMenu;
+begin
+    rectConsulta.Margins.Top := -125;
+    lytOpacity.Visible := true;
+    TAnimator.AnimateFloat(rectConsulta, 'Margins.top', 0, 0.5,
+                            TAnimationType.InOut,
+                            TInterpolationType.Quadratic);
+end;
+
+procedure TFrmJogador.SpeedButton1Click(Sender: TObject);
+begin
+    OpenMenu;
+end;
+
+procedure TFrmJogador.CloseMenu;
+begin
+    rectConsulta.Margins.Top := 0;
+    lytOpacity.Visible := false;
+    TAnimator.AnimateFloat(rectConsulta, 'Margins.top', -125, 0.5,
+                            TAnimationType.InOut,
+                            TInterpolationType.Quadratic);
 end;
 
 procedure TFrmJogador.imgLupaClick(Sender: TObject);
 begin
-    rectConsulta.Visible := true;
+    OpenMenu;
 end;
 
 procedure TFrmJogador.imgBackClick(Sender: TObject);
 begin
   Close;
+end;
+
+procedure TFrmJogador.imgFecharClick(Sender: TObject);
+begin
+    CloseMenu;
 end;
 
 procedure TFrmJogador.imgIconeFlutuanteClick(Sender: TObject);
