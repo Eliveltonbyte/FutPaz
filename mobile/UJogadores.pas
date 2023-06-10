@@ -140,6 +140,17 @@ begin
     TAnimator.AnimateFloat(rectConsulta, 'Margins.top', -125, 0.5,
                             TAnimationType.InOut,
                             TInterpolationType.Quadratic);
+
+    TThread.CreateAnonymousThread(procedure
+    begin
+      sleep(500);
+      TThread.Synchronize(TThread.CurrentThread, procedure
+      begin
+        lytOpacity.Visible := false;
+      end);
+
+
+    end).Start;
 end;
 
 procedure TFrmJogador.imgLupaClick(Sender: TObject);
