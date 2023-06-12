@@ -30,14 +30,16 @@ type
     cbStatus: TComboBox;
     rectBtnConsulta: TRectangle;
     SpeedButton2: TSpeedButton;
+    edtId: TEdit;
     procedure FormShow(Sender: TObject);
     procedure imgBackClick(Sender: TObject);
     procedure imgIconeFlutuanteClick(Sender: TObject);
     procedure imgLupaClick(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
     procedure imgFecharClick(Sender: TObject);
+    procedure SpeedButton2Click(Sender: TObject);
   private
-    procedure AddPedido(id: integer; atleta, posicao, status:string);
+    procedure AddPedido(id, atleta, posicao, status:string);
     procedure ListarTodosAtletas;
     procedure OpenMenu;
     procedure CloseMenu;
@@ -56,19 +58,20 @@ implementation
 
 uses UCadAtleta, DMGLOBAL;
 
-procedure TFrmJogador.AddPedido(id: integer; atleta, posicao, status:string);
+procedure TFrmJogador.AddPedido(id, atleta, posicao, status:string);
 var
   item: TListViewItem;
 begin
    try
      item := lvAtletas.Items.Add;
+     tagString := id;
 
      with item do
      begin
        Height := 90;
 
       //Id Atleta
-      TListItemText(Objects.FindDrawable('txtID')).Text := FormatFloat('0000', id);
+      TListItemText(Objects.FindDrawable('txtID')).Text :=  id;
 
       TListItemText(Objects.FindDrawable('txtAtleta')).text := atleta;
 
@@ -88,11 +91,19 @@ end;
 procedure TFrmJogador.ListarTodosAtletas;
 begin
     try
-     DMTABELAS.ListarAtletas(1, '','','');
+     DMTABELAS.ListarAtletas
+               (edtId.Text,
+                edtNome.text,
+                '',
+                cbStatus.Selected.Text
+               );
+
+     lvAtletas.BeginUpdate;
+     lvAtletas.Items.Clear;
 
      while NOT DMTabelas.FDAtletas.eof do
      begin
-      AddPedido(DMTABELAS.FDAtletas.fieldbyname('id').asInteger,
+      AddPedido(DMTABELAS.FDAtletas.fieldbyname('id').asString,
                 DMTABELAS.FDAtletas.fieldbyname('atleta').asString,
                 DMTABELAS.FDAtletas.fieldbyname('posicao').asString,
                 DMTABELAS.FDAtletas.fieldbyname('status').asString);
@@ -104,6 +115,7 @@ begin
       showMessage('Erro ao consultar pedido' + ex.Message);
     end;
 
+    lvAtletas.EndUpdate;
 end;
 procedure TFrmJogador.FormShow(Sender: TObject);
 begin
@@ -123,6 +135,14 @@ end;
 procedure TFrmJogador.SpeedButton1Click(Sender: TObject);
 begin
     OpenMenu;
+end;
+
+procedure TFrmJogador.SpeedButton2Click(Sender: TObject);
+begin
+ CloseMenu;
+ ListarTodosAtletas;
+ edtId.Text := '';
+ edtNome.Text := '';
 end;
 
 procedure TFrmJogador.CloseMenu;
@@ -153,6 +173,7 @@ end;
 procedure TFrmJogador.imgBackClick(Sender: TObject);
 begin
   Close;
+  lvAtletas.EndUpdate;
 end;
 
 procedure TFrmJogador.imgFecharClick(Sender: TObject);

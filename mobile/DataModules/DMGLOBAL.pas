@@ -14,16 +14,15 @@ type
   TDMTABELAS = class(TDataModule)
     Conn: TFDConnection;
     FDAtletas: TFDQuery;
-    procedure ConnAfterConnect(Sender: TObject);
+
     procedure ConnBeforeConnect(Sender: TObject);
     procedure DataModuleCreate(Sender: TObject);
   private
-    procedure ListarJogadores(id_atleta: integer; atleta, posicao,
-      status: string);
+
 
     { Private declarations }
   public
-   procedure ListarAtletas(id: integer; atleta, posicao, status: string);
+   procedure ListarAtletas(id, atleta, posicao, status: string);
     { Public declarations }
   end;
 
@@ -36,16 +35,16 @@ implementation
 
 {$R *.dfm}
 
-procedure TDMTABELAS.ListarAtletas(id: integer; atleta, posicao, status: string);
+procedure TDMTABELAS.ListarAtletas(id, atleta, posicao, status: string);
 begin
   with FDAtletas do
     begin
         Active := false;
         SQL.Clear;
         SQL.Add('select * from atletas');
-        Sql.Add('where id >= 1 '''' ');
+        Sql.Add('where id <> '''' ');
 
-        if id >= 1 then
+        if id <> '' then
         begin
         sql.Add('and id = :id');
         ParamByName('id').Value := id;
@@ -77,50 +76,9 @@ begin
     end;
 end;
 
-procedure TDMTABELAS.ListarJogadores(id_atleta: integer; atleta, posicao, status:string);
-begin
-  with FDAtletas do
-  begin
-    ACTIVE := false;
-    Sql.Clear;
-    Sql.Add('select * from atletas');
-    Sql.Add('where id >= 1 '' ');
-
-    if id_atleta >= 1 then
-    begin
-       sql.Add('and id = :id ');
-       ParamByName('id').Value := id_atleta;
-    end;
-
-     if atleta <> '' then
-    begin
-       sql.Add('and atleta = :id ');
-       ParamByName('id').Value := id_atleta;
-    end;
-
-
-    Active:= true;
-  end;
-end;
-
-procedure TDMTABELAS.ConnAfterConnect(Sender: TObject);
-begin
-  Conn.ExecSQL('CREATE TABLE IF NOT EXISTS ATLETAS ( ' +
-                            'ID           INTEGER PRIMARY KEY, ' +
-                            'ATLETA            VARCHAR(100), ' +
-                            'POSICAO          VARCHAR(15), ' +
-                            'STATUS           VARCHAR(20));'
-
-                );
-
-  {Conn.ExecSQL('INSERT OR REPLACE INTO ATLETAS (ID, ATLETA, POSICAO, STATUS, FOTO)' +
-                 'VALUES(''00001'', ''Elivelton'', ''Zagueiro'', ''ATIVO'', ''C:\Users\User\Documents\DelphiProjects\futPaz\mobile\images\icons8-ozil-96.png '')');
-     }
-end;
-
 procedure TDMTABELAS.ConnBeforeConnect(Sender: TObject);
 begin
-      //conexão sqlLite...[System.IOUtils em uses]
+     //conexão sqlLite...[System.IOUtils em uses]
     Conn.DriverName := 'SQLite';
 
     {$IFDEF MSWINDOWS}
@@ -130,6 +88,13 @@ begin
     {$ENDIF}
 end;
 
+
+
+{procedure TDMTABELAS.ConnBeforeConnect(Sender: TObject);
+begin
+
+end;
+}
 procedure TDMTABELAS.DataModuleCreate(Sender: TObject);
 begin
     Conn.Connected := true;
