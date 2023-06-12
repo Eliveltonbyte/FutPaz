@@ -18,10 +18,12 @@ type
     procedure ConnBeforeConnect(Sender: TObject);
     procedure DataModuleCreate(Sender: TObject);
   private
+    procedure ListarJogadores(id_atleta: integer; atleta, posicao,
+      status: string);
 
     { Private declarations }
   public
-   procedure ListarAtletas(id, atleta, posicao, status: string);
+   procedure ListarAtletas(id: integer; atleta, posicao, status: string);
     { Public declarations }
   end;
 
@@ -34,19 +36,19 @@ implementation
 
 {$R *.dfm}
 
-procedure TDMTABELAS.ListarAtletas(id, atleta, posicao, status: string);
+procedure TDMTABELAS.ListarAtletas(id: integer; atleta, posicao, status: string);
 begin
   with FDAtletas do
     begin
         Active := false;
         SQL.Clear;
         SQL.Add('select * from atletas');
-        SQL.Add('where id <> '''' ');
+        Sql.Add('where id >= 1 '''' ');
 
-        if id <> '' then
+        if id >= 1 then
         begin
-            SQL.Add('and id = :id');
-            ParamByName('id').Value := id;
+        sql.Add('and id = :id');
+        ParamByName('id').Value := id;
         end;
 
         if atleta <> '' then
@@ -69,10 +71,36 @@ begin
 
 
 
-        SQL.Add('order by id desc');
+      //  SQL.Add('order by id desc');
 
         Active := true;
     end;
+end;
+
+procedure TDMTABELAS.ListarJogadores(id_atleta: integer; atleta, posicao, status:string);
+begin
+  with FDAtletas do
+  begin
+    ACTIVE := false;
+    Sql.Clear;
+    Sql.Add('select * from atletas');
+    Sql.Add('where id >= 1 '' ');
+
+    if id_atleta >= 1 then
+    begin
+       sql.Add('and id = :id ');
+       ParamByName('id').Value := id_atleta;
+    end;
+
+     if atleta <> '' then
+    begin
+       sql.Add('and atleta = :id ');
+       ParamByName('id').Value := id_atleta;
+    end;
+
+
+    Active:= true;
+  end;
 end;
 
 procedure TDMTABELAS.ConnAfterConnect(Sender: TObject);

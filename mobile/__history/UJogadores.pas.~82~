@@ -66,9 +66,9 @@ begin
      with item do
      begin
        Height := 90;
-
+       TagString := id;
       //Id Atleta
-      TListItemText(Objects.FindDrawable('txtID')).Text := FormatFloat('0000', id);
+      TListItemText(Objects.FindDrawable('txtID')).text := id;
 
       TListItemText(Objects.FindDrawable('txtAtleta')).text := atleta;
 
@@ -87,23 +87,7 @@ end;
 
 procedure TFrmJogador.ListarTodosAtletas;
 begin
-    try
-     DMTABELAS.ListarAtletas(1, '','','');
-
-     while NOT DMTabelas.FDAtletas.eof do
-     begin
-      AddPedido(DMTABELAS.FDAtletas.fieldbyname('id').asInteger,
-                DMTABELAS.FDAtletas.fieldbyname('atleta').asString,
-                DMTABELAS.FDAtletas.fieldbyname('posicao').asString,
-                DMTABELAS.FDAtletas.fieldbyname('status').asString);
-
-             DMTabelas.FDAtletas.Next;
-     end;
-
-    except on ex:Exception do
-      showMessage('Erro ao consultar pedido' + ex.Message);
-    end;
-
+    DMTABELAS.ListarAtletas(1, '','','','');
 end;
 procedure TFrmJogador.FormShow(Sender: TObject);
 begin

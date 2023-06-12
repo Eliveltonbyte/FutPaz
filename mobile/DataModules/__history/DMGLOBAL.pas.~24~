@@ -18,6 +18,8 @@ type
     procedure ConnBeforeConnect(Sender: TObject);
     procedure DataModuleCreate(Sender: TObject);
   private
+    procedure ListarJogadores(id_atleta: integer; atleta, posicao,
+      status: string);
 
     { Private declarations }
   public
@@ -75,19 +77,24 @@ begin
     end;
 end;
 
+procedure TDMTABELAS.ListarJogadores(id_atleta: integer; atleta, posicao, status:string);
+begin
+
+end;
+
 procedure TDMTABELAS.ConnAfterConnect(Sender: TObject);
 begin
   Conn.ExecSQL('CREATE TABLE IF NOT EXISTS ATLETAS ( ' +
-                            'ID           VARCHAR(20) NOT NULL PRIMARY KEY, ' +
+                            'ID           INTEGER PRIMARY KEY, ' +
                             'ATLETA            VARCHAR(100), ' +
                             'POSICAO          VARCHAR(15), ' +
-                            'STATUS           VARCHAR(20)' +
-                            'FOTO          Blob);'
+                            'STATUS           VARCHAR(20));'
+
                 );
 
-  Conn.ExecSQL('INSERT OR REPLACE INTO ATLETAS (ID, ATLETA, POSICAO, STATUS)' +
+  {Conn.ExecSQL('INSERT OR REPLACE INTO ATLETAS (ID, ATLETA, POSICAO, STATUS, FOTO)' +
                  'VALUES(''00001'', ''Elivelton'', ''Zagueiro'', ''ATIVO'', ''C:\Users\User\Documents\DelphiProjects\futPaz\mobile\images\icons8-ozil-96.png '')');
-
+     }
 end;
 
 procedure TDMTABELAS.ConnBeforeConnect(Sender: TObject);

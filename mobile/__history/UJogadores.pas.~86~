@@ -96,8 +96,6 @@ begin
                 DMTABELAS.FDAtletas.fieldbyname('atleta').asString,
                 DMTABELAS.FDAtletas.fieldbyname('posicao').asString,
                 DMTABELAS.FDAtletas.fieldbyname('status').asString);
-
-             DMTabelas.FDAtletas.Next;
      end;
 
     except on ex:Exception do

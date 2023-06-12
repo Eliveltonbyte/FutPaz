@@ -26,16 +26,18 @@ type
     edtNome: TEdit;
     Label1: TLabel;
     lblStatus: TLabel;
-    ComboBox1: TComboBox;
+    cbPosicao: TComboBox;
     cbStatus: TComboBox;
+    rectBtnConsulta: TRectangle;
+    SpeedButton2: TSpeedButton;
     procedure FormShow(Sender: TObject);
     procedure imgBackClick(Sender: TObject);
     procedure imgIconeFlutuanteClick(Sender: TObject);
     procedure imgLupaClick(Sender: TObject);
-    procedure imgFecharConsultaClick(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
+    procedure imgFecharClick(Sender: TObject);
   private
-    procedure AddPedido(id, atleta, posicao, status:string);
+    procedure AddPedido(id: integer; atleta, posicao, status:string);
     procedure ListarTodosAtletas;
     procedure OpenMenu;
     procedure CloseMenu;
@@ -54,7 +56,7 @@ implementation
 
 uses UCadAtleta, DMGLOBAL;
 
-procedure TFrmJogador.AddPedido(id, atleta, posicao, status:string);
+procedure TFrmJogador.AddPedido(id: integer; atleta, posicao, status:string);
 var
   item: TListViewItem;
 begin
@@ -64,9 +66,9 @@ begin
      with item do
      begin
        Height := 90;
-       TagString := id;
+
       //Id Atleta
-      TListItemText(Objects.FindDrawable('txtID')).text := id;
+      TListItemText(Objects.FindDrawable('txtID')).Text := FormatFloat('0000', id);
 
       TListItemText(Objects.FindDrawable('txtAtleta')).text := atleta;
 
@@ -85,31 +87,23 @@ end;
 
 procedure TFrmJogador.ListarTodosAtletas;
 begin
-  AddPedido('0001','Elivelton Carneiro','Zagueiro','Ativo');
-  AddPedido('0002','João Guilherme','Meio-Campo','Ativo');
-  AddPedido('0003','José Silva','Atacante','Ativo');
-  AddPedido('0004','Mateus Jesus','Goleiro','Ativo');
-  AddPedido('0005','Otavio Ferreira','Zagueiro','Desligado');
-  AddPedido('0001','Elivelton Carneiro ','Zagueiro','Ativo');
-  AddPedido('0002','João Guilherme','Meio-Campo','Ativo');
-  AddPedido('0003','José Silva','Atacante','Ativo');
-  AddPedido('0004','Mateus Jesus','Goleiro','Ativo');
-  AddPedido('0005','Otavio Ferreira','Zagueiro','Desligado');
-  AddPedido('0001','Elivelton Carneiro ','Zagueiro','Ativo');
-  AddPedido('0002','João Guilherme','Meio-Campo','Ativo');
-  AddPedido('0003','José Silva','Atacante','Ativo');
-  AddPedido('0004','Mateus Jesus','Goleiro','Ativo');
-  AddPedido('0005','Otavio Ferreira','Zagueiro','Desligado');
-  AddPedido('0001','Elivelton Carneiro ','Zagueiro','Ativo');
-  AddPedido('0002','João Guilherme','Meio-Campo','Ativo');
-  AddPedido('0003','José Silva','Atacante','Ativo');
-  AddPedido('0004','Mateus Jesus','Goleiro','Ativo');
-  AddPedido('0005','Otavio Ferreira','Zagueiro','Desligado');
-  AddPedido('0001','Elivelton Carneiro ','Zagueiro','Ativo');
-  AddPedido('0002','João Guilherme','Meio-Campo','Ativo');
-  AddPedido('0003','José Silva','Atacante','Ativo');
-  AddPedido('0004','Mateus Jesus','Goleiro','Ativo');
-  AddPedido('0005','Otavio Ferreira','Zagueiro','Desligado');
+    try
+     DMTABELAS.ListarAtletas(0, '','','');
+
+     while NOT DMTabelas.FDAtletas.eof do
+     begin
+      AddPedido(DMTABELAS.FDAtletas.fieldbyname('id').asInteger,
+                DMTABELAS.FDAtletas.fieldbyname('atleta').asString,
+                DMTABELAS.FDAtletas.fieldbyname('posicao').asString,
+                DMTABELAS.FDAtletas.fieldbyname('status').asString);
+
+             DMTabelas.FDAtletas.Next;
+     end;
+
+    except on ex:Exception do
+      showMessage('Erro ao consultar pedido' + ex.Message);
+    end;
+
 end;
 procedure TFrmJogador.FormShow(Sender: TObject);
 begin
@@ -120,7 +114,7 @@ end;
 procedure TFrmJogador.OpenMenu;
 begin
     rectConsulta.Margins.Top := -125;
-    rectOpacity.Visible := true;
+    lytOpacity.Visible := true;
     TAnimator.AnimateFloat(rectConsulta, 'Margins.top', 0, 0.5,
                             TAnimationType.InOut,
                             TInterpolationType.Quadratic);
@@ -134,10 +128,21 @@ end;
 procedure TFrmJogador.CloseMenu;
 begin
     rectConsulta.Margins.Top := 0;
-    rectOpacity.Visible := false;
+    lytOpacity.Visible := false;
     TAnimator.AnimateFloat(rectConsulta, 'Margins.top', -125, 0.5,
                             TAnimationType.InOut,
                             TInterpolationType.Quadratic);
+
+    TThread.CreateAnonymousThread(procedure
+    begin
+      sleep(500);
+      TThread.Synchronize(TThread.CurrentThread, procedure
+      begin
+        lytOpacity.Visible := false;
+      end);
+
+
+    end).Start;
 end;
 
 procedure TFrmJogador.imgLupaClick(Sender: TObject);
@@ -150,10 +155,9 @@ begin
   Close;
 end;
 
-procedure TFrmJogador.imgFecharConsultaClick(Sender: TObject);
+procedure TFrmJogador.imgFecharClick(Sender: TObject);
 begin
-  CloseMenu;
-
+    CloseMenu;
 end;
 
 procedure TFrmJogador.imgIconeFlutuanteClick(Sender: TObject);

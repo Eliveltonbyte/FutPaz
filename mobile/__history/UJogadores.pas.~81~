@@ -29,7 +29,7 @@ type
     cbPosicao: TComboBox;
     cbStatus: TComboBox;
     rectBtnConsulta: TRectangle;
-    spdConsulta: TSpeedButton;
+    SpeedButton2: TSpeedButton;
     procedure FormShow(Sender: TObject);
     procedure imgBackClick(Sender: TObject);
     procedure imgIconeFlutuanteClick(Sender: TObject);
@@ -122,7 +122,7 @@ end;
 procedure TFrmJogador.OpenMenu;
 begin
     rectConsulta.Margins.Top := -125;
-    rectOpacity.Visible := true;
+    lytOpacity.Visible := true;
     TAnimator.AnimateFloat(rectConsulta, 'Margins.top', 0, 0.5,
                             TAnimationType.InOut,
                             TInterpolationType.Quadratic);
@@ -136,10 +136,21 @@ end;
 procedure TFrmJogador.CloseMenu;
 begin
     rectConsulta.Margins.Top := 0;
-    rectOpacity.Visible := false;
+    lytOpacity.Visible := false;
     TAnimator.AnimateFloat(rectConsulta, 'Margins.top', -125, 0.5,
                             TAnimationType.InOut,
                             TInterpolationType.Quadratic);
+
+    TThread.CreateAnonymousThread(procedure
+    begin
+      sleep(500);
+      TThread.Synchronize(TThread.CurrentThread, procedure
+      begin
+        lytOpacity.Visible := false;
+      end);
+
+
+    end).Start;
 end;
 
 procedure TFrmJogador.imgLupaClick(Sender: TObject);
