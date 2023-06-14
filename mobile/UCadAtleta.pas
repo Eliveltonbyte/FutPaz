@@ -49,7 +49,7 @@ implementation
 
 {$R *.fmx}
 
-uses DMGLOBAL;
+uses DMGLOBAL, UJogadores;
 
 procedure TFrmCadAtleta.cbPosicaoEnter(Sender: TObject);
 begin
@@ -131,7 +131,8 @@ end;
 procedure TFrmCadAtleta.imgVoltarClick(Sender: TObject);
 begin
     Close;
-    LimparCampos
+    LimparCampos;
+   FrmJogador.ListaSemConsulta;
 end;
 
 procedure TFrmCadAtleta.LimparCampos;
@@ -169,6 +170,9 @@ begin
       ShowMessage('Atleta Cadastrado com Sucesso!!');
 
       LimparCampos;
+
+
+
 
     end;
 end;

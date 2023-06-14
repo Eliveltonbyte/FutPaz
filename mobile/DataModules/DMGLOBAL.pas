@@ -17,6 +17,7 @@ type
 
     procedure ConnBeforeConnect(Sender: TObject);
     procedure DataModuleCreate(Sender: TObject);
+    procedure ConnAfterConnect(Sender: TObject);
   private
 
 
@@ -76,6 +77,21 @@ begin
     end;
 end;
 
+procedure TDMTABELAS.ConnAfterConnect(Sender: TObject);
+begin
+ {Conn.ExecSQL('CREATE TABLE IF NOT EXISTS ATLETAS ( ' +
+                            'ID      INTEGER   PRIMARY KEY, ' +
+                            'ATLETA    VARCHAR (100), ' +
+                            'POSICAO VARCHAR (15), ' +
+                            'STATUS  VARCHAR (20))'
+                              );
+                             }
+
+   {
+    Conn.ExecSQL('INSERT OR REPLACE INTO ATLETAS (ID, ATLETA, POSICAO, ST]ATUS)' +
+                 'VALUES(1, ''ELIVELTON'', ''GOLEIRO'', ''ATIVO'' )');  }
+end;
+
 procedure TDMTABELAS.ConnBeforeConnect(Sender: TObject);
 begin
      //conexão sqlLite...[System.IOUtils em uses]
@@ -97,7 +113,15 @@ end;
 }
 procedure TDMTABELAS.DataModuleCreate(Sender: TObject);
 begin
-    Conn.Connected := true;
+     Conn.Params.Values['DriverID'] := 'SQLite';
+     Conn.LoginPrompt := False;
+  {$IF DEFINED (ANDROID) || (IOS)}
+       Conn.Params.Values['Database'] := TPath.Combine(TPath.GetDocumentsPath, 'banco.bd');
+  {$ENDIF}
+  {$IF DEFINED (MSWINDOWS)}
+    Conn.Params.Values['DataBase'] := System.SysUtils.GetCurrentDir + '\banco.db';
+ {$ENDIF}
+   Conn.Connected := true;
 end;
 
 end.

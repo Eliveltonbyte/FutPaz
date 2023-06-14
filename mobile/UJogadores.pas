@@ -40,12 +40,15 @@ type
     procedure SpeedButton2Click(Sender: TObject);
   private
     procedure AddPedido(id, atleta, posicao, status:string);
-    procedure ListarTodosAtletas;
+
     procedure OpenMenu;
     procedure CloseMenu;
 
+
     { Private declarations }
   public
+  procedure ListarTodosAtletas;
+   procedure ListaSemConsulta;
     { Public declarations }
   end;
 
@@ -88,13 +91,37 @@ begin
    end;
 end;
 
+procedure TFrmJogador.ListaSemConsulta;
+begin
+  lvAtletas.BeginUpdate;
+  lvAtletas.Items.Clear;
+
+  with DMTABELAS.FDAtletas do begin
+  active := false;
+  SQL.Clear;
+  SQL.ADD('select * from atletas order by id');
+  active := true;
+
+  while NOT DMTabelas.FDAtletas.eof do
+  begin
+  AddPedido(DMTABELAS.FDAtletas.fieldbyname('id').asString,
+            DMTABELAS.FDAtletas.fieldbyname('atleta').asString,
+            DMTABELAS.FDAtletas.fieldbyname('posicao').asString,
+            DMTABELAS.FDAtletas.fieldbyname('status').asString);
+
+            DMTabelas.FDAtletas.Next;
+  end;
+  end;
+
+end;
+
 procedure TFrmJogador.ListarTodosAtletas;
 begin
     try
      DMTABELAS.ListarAtletas
                (edtId.Text,
                 edtNome.text,
-                '',
+                cbPosicao.Selected.Text,
                 cbStatus.Selected.Text
                );
 
@@ -119,13 +146,12 @@ begin
 end;
 procedure TFrmJogador.FormShow(Sender: TObject);
 begin
-    ListarTodosAtletas;
-    //
+   ListaSemConsulta;
 end;
 
 procedure TFrmJogador.OpenMenu;
 begin
-    rectConsulta.Margins.Top := -125;
+    rectConsulta.Margins.Top := -150;
     lytOpacity.Visible := true;
     TAnimator.AnimateFloat(rectConsulta, 'Margins.top', 0, 0.5,
                             TAnimationType.InOut,
@@ -149,7 +175,7 @@ procedure TFrmJogador.CloseMenu;
 begin
     rectConsulta.Margins.Top := 0;
     lytOpacity.Visible := false;
-    TAnimator.AnimateFloat(rectConsulta, 'Margins.top', -125, 0.5,
+    TAnimator.AnimateFloat(rectConsulta, 'Margins.top', -150, 0.5,
                             TAnimationType.InOut,
                             TInterpolationType.Quadratic);
 
@@ -174,6 +200,8 @@ procedure TFrmJogador.imgBackClick(Sender: TObject);
 begin
   Close;
   lvAtletas.EndUpdate;
+  cbPosicao.ItemIndex:= -1;
+  cbStatus.ItemIndex := -1;
 end;
 
 procedure TFrmJogador.imgFecharClick(Sender: TObject);

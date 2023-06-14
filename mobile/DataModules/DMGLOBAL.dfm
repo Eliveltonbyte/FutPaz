@@ -5,6 +5,7 @@ object DMTABELAS: TDMTABELAS
   object Conn: TFDConnection
     Params.Strings = (
       'DriverID=SQLite')
+    AfterConnect = ConnAfterConnect
     BeforeConnect = ConnBeforeConnect
     Left = 104
     Top = 72
