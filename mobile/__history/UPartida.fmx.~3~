@@ -1,0 +1,70 @@
+object FrmPartida: TFrmPartida
+  Left = 0
+  Top = 0
+  Caption = 'Nova Partida'
+  ClientHeight = 534
+  ClientWidth = 296
+  Fill.Kind = Solid
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 0
+  object rectTolbarPartida: TRectangle
+    Align = Top
+    Fill.Color = xFF5531C5
+    Size.Width = 296.000000000000000000
+    Size.Height = 57.000000000000000000
+    Size.PlatformDefault = False
+    Stroke.Kind = None
+    Stroke.Dash = Dot
+    object lbToobar: TLabel
+      Align = Top
+      StyledSettings = [Family]
+      HitTest = True
+      Size.Width = 296.000000000000000000
+      Size.Height = 57.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 18.000000000000000000
+      TextSettings.Font.StyleExt = {00070000000000000004000000}
+      TextSettings.FontColor = claWhite
+      TextSettings.HorzAlign = Center
+      Text = 'Cadastro Jogador'
+      TabOrder = 0
+    end
+    object imgBack: TImage
+      MultiResBitmap.Height = 64
+      MultiResBitmap.Width = 64
+      MultiResBitmap = <
+        item
+          Width = 64
+          Height = 64
+          PNG = {
+            89504E470D0A1A0A0000000D4948445200000040000000400806000000AA6971
+            DE000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+            01B249444154785EEDDA3D4A03411C05F0E021FC38828D17101B41D0D3F87900
+            4544905888E730588AC7B013B5540B8BB499CCEEEA1B7C5B0861DD994991FFF0
+            7E4D42B2F327EF2DBBF9DA81888888C822689A66AFAEEB47E7DCA7F7FE05F76F
+            F1D81A9F2E1BC29E7FCF10CA40091BDCAC4C083F64DE992693C957B12520FC25
+            73769A4EA7EF286185CBCAD0377C0BDB5F73A97DB1E183AAAA9EB8DCB694F001
+            DE195E39C2AED4F001D6DE718C4D39E1C7E3718D93E02647D993133E40F87D8E
+            B207E13BDFE7FF83F0071C658FC2675078ABE610FE90A3EC51F80C0A6F95C267
+            B01E7EE6CF587D21FC3147D98317BF832F280DB344331D3EC0DEBF679668087F
+            C2317679EF9F9927CAA2855FE2ADC4C22130E24E8D56C4218010DB992741FB25
+            20C7E96F9C3445948043E18A7992A084238EB24B25804A0095002A015402A804
+            5009A0124025004AB8609E2428C1EE4F67AD9C12F8F7F81647D9955302D68E38
+            C6B6D412BCF76F1C615F4A09C55C24D58A2D01DB0FB9B41C7D4B70CE7DE024B8
+            CC656541099D9F1378BDF03A372F134A3863DE3FB8E7CBBE58BA85A0BB28E221
+            840EFF3BE0FE0D3A58E5D322222222733418FC0040C3DAFC038E7F0700000000
+            49454E44AE426082}
+          FileName = 
+            'C:\Users\User\Documents\DelphiProjects\futPaz\mobile\images\volt' +
+            'ar.png'
+        end>
+      Position.X = 8.000000000000000000
+      Position.Y = 8.000000000000000000
+      Size.Width = 49.000000000000000000
+      Size.Height = 41.000000000000000000
+      Size.PlatformDefault = False
+    end
+  end
+end

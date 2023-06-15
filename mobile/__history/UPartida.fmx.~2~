@@ -1,0 +1,12 @@
+object FrmPartida: TFrmPartida
+  Left = 0
+  Top = 0
+  Caption = 'Nova Partida'
+  ClientHeight = 534
+  ClientWidth = 296
+  Fill.Kind = Solid
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 0
+end
