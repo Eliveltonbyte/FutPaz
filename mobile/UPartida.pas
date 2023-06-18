@@ -37,12 +37,14 @@ type
     Edit1: TEdit;
     imgConAtleta: TImage;
     spdBuscAtleta: TSpeedButton;
-    Label2: TLabel;
+    lblGol: TLabel;
     Edit2: TEdit;
-    Rectangle2: TRectangle;
-    SpeedButton1: TSpeedButton;
-    Rectangle3: TRectangle;
-    Label3: TLabel;
+    rectFinalizar: TRectangle;
+    spdFinalizar: TSpeedButton;
+    rectAddGol: TRectangle;
+    recDivisor1: TRectangle;
+    rectDivisor2: TRectangle;
+    Label2: TLabel;
     procedure imgBackClick(Sender: TObject);
     procedure spdIniciarPartidaClick(Sender: TObject);
     procedure spdCancelarClick(Sender: TObject);
@@ -50,6 +52,7 @@ type
     procedure spdIniciarClick(Sender: TObject);
     procedure dtPartidaEnter(Sender: TObject);
     procedure btnBuscarPartidaClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     procedure CloseMenu;
     procedure OpenMenu;
@@ -90,14 +93,27 @@ begin
 
 
 end;
+procedure TFrmPartida.FormCreate(Sender: TObject);
+begin
+    tbControl.TabIndex := 0;
+end;
+
 procedure TFrmPartida.FormShow(Sender: TObject);
 begin
     dtDataPartida.Date := Date;
-    if tbControl.TabIndex = 1  then
+    if tbControl.TabIndex > 0  then
     begin
       imgIniciarPartida.Visible := false;
+      imgBack.Visible:= false;
+
+    end
+    else
+    begin
+     imgIniciarPartida.Visible := true;
+     imgBack.Visible:= true;
+
     end;
-    tbControl.TabIndex := 0;
+
 end;
 
 procedure TFrmPartida.imgBackClick(Sender: TObject);
