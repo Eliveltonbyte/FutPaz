@@ -33,6 +33,7 @@ type
     Circle3: TCircle;
     Image3: TImage;
     procedure rectMenuJogadorClick(Sender: TObject);
+    procedure Rectangle1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -46,7 +47,15 @@ implementation
 
 {$R *.fmx}
 
-uses UJogadores;
+uses UJogadores, UPartida;
+
+procedure TFrmPrincipal.Rectangle1Click(Sender: TObject);
+begin
+   if NOT Assigned(FrmPartida) then
+      Application.CreateForm(TFrmPartida, FrmPartida);
+
+    FrmPartida.Show;
+end;
 
 procedure TFrmPrincipal.rectMenuJogadorClick(Sender: TObject);
 begin

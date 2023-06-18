@@ -14,6 +14,7 @@ type
   TDMTABELAS = class(TDataModule)
     Conn: TFDConnection;
     FDAtletas: TFDQuery;
+    FDPartida: TFDQuery;
 
     procedure ConnBeforeConnect(Sender: TObject);
     procedure DataModuleCreate(Sender: TObject);
@@ -90,6 +91,12 @@ begin
    {
     Conn.ExecSQL('INSERT OR REPLACE INTO ATLETAS (ID, ATLETA, POSICAO, ST]ATUS)' +
                  'VALUES(1, ''ELIVELTON'', ''GOLEIRO'', ''ATIVO'' )');  }
+
+   Conn.ExecSQL('CREATE TABLE IF NOT EXISTS PARTIDA ( ' +
+                            'ID      INTEGER   PRIMARY KEY,' +
+                            'DATA_PARTIDA           VARCHAR(20),' +
+                            'STATUS          CHAR(1));'
+                            );
 end;
 
 procedure TDMTABELAS.ConnBeforeConnect(Sender: TObject);
