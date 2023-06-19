@@ -34,11 +34,11 @@ type
     Label1: TLabel;
     dataPartida: TDateEdit;
     lytBuscarJogador: TLayout;
-    Edit1: TEdit;
+    edtNome: TEdit;
     imgConAtleta: TImage;
     spdBuscAtleta: TSpeedButton;
     lblGol: TLabel;
-    Edit2: TEdit;
+    edtGol: TEdit;
     rectFinalizar: TRectangle;
     spdFinalizar: TSpeedButton;
     rectAddGol: TRectangle;
@@ -53,6 +53,7 @@ type
     procedure dtPartidaEnter(Sender: TObject);
     procedure btnBuscarPartidaClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure spdBuscAtletaClick(Sender: TObject);
   private
     procedure CloseMenu;
     procedure OpenMenu;
@@ -152,6 +153,19 @@ end;
 procedure TFrmPartida.btnBuscarPartidaClick(Sender: TObject);
 begin
    BuscarPartida;
+end;
+
+procedure TFrmPartida.spdBuscAtletaClick(Sender: TObject);
+begin
+  with DMTABELAS.FDAtletas do begin
+  active := false;
+  SQL.Clear;
+  SQL.ADD('select atleta from atletas where atleta like :pNome');
+  DMTABELAS.FDAtletas.ParamByName('pNome').AsString := edtNome.Text + '%';
+  active := true;
+
+
+  end;
 end;
 
 procedure TFrmPartida.spdCancelarClick(Sender: TObject);

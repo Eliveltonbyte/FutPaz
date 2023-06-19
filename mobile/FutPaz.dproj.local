@@ -19,6 +19,6 @@
     <Transaction>2023/06/15 15:05:16.000.164,C:\projetos\FutPaz\FutPaz\mobile\UPartida.pas=C:\projetos\FutPaz\FutPaz\mobile\Unit1.pas</Transaction>
   </Transactions>
 	<ActiveMobileDevice>
-		<NoProfile Android64="RX8R70CMKGK" Android="RX8R70CMKGK"/>
+		<NoProfile Android64="" Android=""/>
 	</ActiveMobileDevice>
 </BorlandProject>
