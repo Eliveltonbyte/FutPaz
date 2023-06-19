@@ -164,8 +164,9 @@ begin
   DMTABELAS.FDAtletas.ParamByName('pNome').AsString := edtNome.Text + '%';
   active := true;
 
-
   end;
+
+  edtNome.Text := DmTabelas.FDAtletas.Fields[0].AsString;
 end;
 
 procedure TFrmPartida.spdCancelarClick(Sender: TObject);
