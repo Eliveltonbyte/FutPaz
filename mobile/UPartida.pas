@@ -45,6 +45,7 @@ type
     recDivisor1: TRectangle;
     rectDivisor2: TRectangle;
     Label2: TLabel;
+    edtIdPartida: TEdit;
     procedure imgBackClick(Sender: TObject);
     procedure spdIniciarPartidaClick(Sender: TObject);
     procedure spdCancelarClick(Sender: TObject);
@@ -59,6 +60,7 @@ type
     procedure OpenMenu;
     procedure InserirPartida;
     procedure BuscarPartida;
+    procedure BuscarInfoPartida;
     { Private declarations }
   public
     { Public declarations }
@@ -82,18 +84,15 @@ begin
     begin
         Active := false;
         SQL.Clear;
-        SQL.Add('select id, data_partida from partida');
-        Sql.Add('where data_partida = :p0 and Status = "A" ');
-        Params[0].Value := DataPartida.Date;
-
+        SQL.Add('select id, data_partida from partida ' +
+                'where data_partida = :p0 and Status = ' + QuotedStr('A'));
+        Params[0].AsString := dtDataPartida.Text;
         Active := true;
-
-       // edit1.Text:= fieldbyname('id').AsString;
     end;
-
-
+    edtIdPartida.Text:= DMTABELAS.FDPartida.FieldByName('id').AsString;
 
 end;
+
 procedure TFrmPartida.FormCreate(Sender: TObject);
 begin
     tbControl.TabIndex := 0;
@@ -169,6 +168,22 @@ begin
   edtNome.Text := DmTabelas.FDAtletas.Fields[0].AsString;
 end;
 
+procedure TFrmPartida.BuscarInfoPartida;
+begin
+
+   with DMTABELAS.FDPartida do begin
+     active := false;
+     SQL.Clear;
+     SQL.ADD('select id from partida where data_partida = :data');
+     DMTABELAS.FDPartida.Params[0].AsString := dtdataPartida.Text;
+     active := true;
+
+  end;
+
+  edtIdPartida.Text := IntToStr(DMTABELAS.FDPartida.FieldByName('id').AsInteger);
+
+end;
+
 procedure TFrmPartida.spdCancelarClick(Sender: TObject);
 begin
  CloseMenu;
@@ -181,6 +196,7 @@ begin
       InserirPartida;
     end;
 
+    BuscarInfoPartida;
     tbControl.TabIndex := 1;
     closeMenu;
 end;
@@ -194,26 +210,30 @@ procedure TFrmPartida.InserirPartida;
 begin
      with DMTABELAS.FDPARTIDA do
      begin
-     Active := false;
-     SQL.Clear;
-     SQL.Add('delete from partida');
-     ExecSql;
+       Active := false;
+       SQL.Clear;
+       SQL.Add('select id from partida where data_partida = :data');
+       DMTABELAS.FDPartida.Params[0].AsString := dtDataPartida.Text;
+       Open;
      end;
 
-    with DMTABELAS.FDPARTIDA do
-    begin
-      Active := false;
-      SQL.Clear;
-      SQL.Add('insert into PARTIDA(data_partida, STATUS)');
-      SQL.Add('values( :data_partida, "A" )');
+     if dmTabelas.FDPartida.IsEmpty then
+     begin
+      with DMTABELAS.FDPartida do
+      begin
+        Active := false;
+        SQL.Clear;
+        SQL.Add('insert into PARTIDA(data_partida, STATUS)');
+        SQL.Add('values( :data_partida, "A" ) ');
 
-      ParamByName('data_partida').Value := DATETOSTR (dtDataPartida.Date);
+        ParamByName('data_partida').Value := DATETOSTR (dtDataPartida.Date);
 
-      ExecSql;
+        ExecSql;
 
-      ShowMessage('Nova Partida Iniciada');
-
-    end;
+        ShowMessage('Nova Partida Iniciada');
+      end;
+     end;
+     BuscarPartida;
 
 end;
 

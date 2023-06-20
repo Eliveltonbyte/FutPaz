@@ -55,6 +55,7 @@ begin
       Application.CreateForm(TFrmPartida, FrmPartida);
 
     FrmPartida.Show;
+    FrmPartida.tbControl.gotovisibletab(0);
 end;
 
 procedure TFrmPrincipal.rectMenuJogadorClick(Sender: TObject);
