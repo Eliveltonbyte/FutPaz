@@ -17,7 +17,12 @@ object DMTABELAS: TDMTABELAS
   end
   object FDPartida: TFDQuery
     Connection = Conn
-    Left = 184
+    Left = 176
+    Top = 16
+  end
+  object FDARTILHARIA: TFDQuery
+    Connection = Conn
+    Left = 264
     Top = 16
   end
 end

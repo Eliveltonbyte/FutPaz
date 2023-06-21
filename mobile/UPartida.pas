@@ -29,10 +29,6 @@ type
     spdIniciar: TSpeedButton;
     spdIniciarPartida: TSpeedButton;
     Rectangle1: TRectangle;
-    lytPartidaArt: TLayout;
-    btnBuscarPartida: TRectangle;
-    Label1: TLabel;
-    dataPartida: TDateEdit;
     lytBuscarJogador: TLayout;
     edtNome: TEdit;
     imgConAtleta: TImage;
@@ -40,12 +36,14 @@ type
     lblGol: TLabel;
     edtGol: TEdit;
     rectFinalizar: TRectangle;
-    spdFinalizar: TSpeedButton;
     rectAddGol: TRectangle;
-    recDivisor1: TRectangle;
     rectDivisor2: TRectangle;
-    Label2: TLabel;
+    dataPartida: TDateEdit;
     edtIdPartida: TEdit;
+    spdLancarGol: TSpeedButton;
+    lytListaGols: TLayout;
+    Label1: TLabel;
+    edtIdAtleta: TEdit;
     procedure imgBackClick(Sender: TObject);
     procedure spdIniciarPartidaClick(Sender: TObject);
     procedure spdCancelarClick(Sender: TObject);
@@ -55,12 +53,15 @@ type
     procedure btnBuscarPartidaClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure spdBuscAtletaClick(Sender: TObject);
+    procedure spdLancarGolClick(Sender: TObject);
   private
     procedure CloseMenu;
     procedure OpenMenu;
     procedure InserirPartida;
     procedure BuscarPartida;
     procedure BuscarInfoPartida;
+    procedure SalvarArtilharia;
+    procedure LimparCamposArt;
     { Private declarations }
   public
     { Public declarations }
@@ -101,6 +102,7 @@ end;
 procedure TFrmPartida.FormShow(Sender: TObject);
 begin
     dtDataPartida.Date := Date;
+    dataPartida.Date := Date;
     if tbControl.TabIndex > 0  then
     begin
       imgIniciarPartida.Visible := false;
@@ -159,13 +161,15 @@ begin
   with DMTABELAS.FDAtletas do begin
   active := false;
   SQL.Clear;
-  SQL.ADD('select atleta from atletas where atleta like :pNome');
+  SQL.ADD('select id, atleta from atletas where atleta like :pNome');
   DMTABELAS.FDAtletas.ParamByName('pNome').AsString := edtNome.Text + '%';
   active := true;
 
   end;
 
-  edtNome.Text := DmTabelas.FDAtletas.Fields[0].AsString;
+  edtNome.Text :=   DMTABELAS.FDAtletas.FieldByName('Atleta').AsString;
+  //DmTabelas.FDAtletas.Fields[0].AsString;
+  edtIdAtleta.Text:= DMTABELAS.FDAtletas.FieldByName('id').AsString;
 end;
 
 procedure TFrmPartida.BuscarInfoPartida;
@@ -196,7 +200,8 @@ begin
       InserirPartida;
     end;
 
-    BuscarInfoPartida;
+    //BuscarInfoPartida;
+    BuscarPartida;
     tbControl.TabIndex := 1;
     closeMenu;
 end;
@@ -204,6 +209,43 @@ end;
 procedure TFrmPartida.spdIniciarPartidaClick(Sender: TObject);
 begin
     OpenMenu;
+end;
+
+procedure TFrmPartida.SalvarArtilharia;
+begin
+  if dmTabelas.FDARTILHARIA.IsEmpty then
+     begin
+      with DMTABELAS.FDARTILHARIA do
+      begin
+        Active := false;
+        SQL.Clear;
+        SQL.Add('insert into ARTILHARIA (ID_PARTIDA, DATA, ID_ATLETA, ATLETA, GOLS )');
+        SQL.Add('values( :ID_PARTIDA, :DATA, :ID_ATLETA, :ATLETA, :GOLS ) ');
+
+        ParamByName('ID_PARTIDA').Value :=  edtIdPartida.text;
+        ParamByName('data').Value := DATETOSTR (dtDataPartida.Date);
+        ParamByName('ID_ATLETA').Value := edtIdAtleta.Text;
+        ParamByName('ATLETA').Value := edtNome.Text;
+        ParamByName('GOLS').Value := edtGol.Text;
+
+        ExecSql;
+
+        ShowMessage('Gols Anotados ^^');
+      end;
+     end;
+end;
+
+procedure TFrmPartida.LimparCamposArt;
+begin
+    EdtNome.Text     := '';
+    edtGol.Text      := '';
+    edtIdAtleta.Text := '';
+    EdtNome.SetFocus;
+end;
+procedure TFrmPartida.spdLancarGolClick(Sender: TObject);
+begin
+    SalvarArtilharia;
+    LimparCamposArt;
 end;
 
 procedure TFrmPartida.InserirPartida;
