@@ -44,6 +44,7 @@ type
     lytListaGols: TLayout;
     Label1: TLabel;
     edtIdAtleta: TEdit;
+    lvArtilharia: TListView;
     procedure imgBackClick(Sender: TObject);
     procedure spdIniciarPartidaClick(Sender: TObject);
     procedure spdCancelarClick(Sender: TObject);
@@ -61,6 +62,9 @@ type
     procedure BuscarPartida;
     procedure BuscarInfoPartida;
     procedure SalvarArtilharia;
+    procedure LimparCamposArt;
+    procedure AddArtilharia(atleta, gols : string);
+    procedure ListarGolsDia;
     { Private declarations }
   public
     { Public declarations }
@@ -100,6 +104,7 @@ end;
 
 procedure TFrmPartida.FormShow(Sender: TObject);
 begin
+    ListarGolsDia;
     dtDataPartida.Date := Date;
     dataPartida.Date := Date;
     if tbControl.TabIndex > 0  then
@@ -199,7 +204,7 @@ begin
       InserirPartida;
     end;
 
-    BuscarInfoPartida;
+    //BuscarInfoPartida;
     BuscarPartida;
     tbControl.TabIndex := 1;
     closeMenu;
@@ -234,9 +239,78 @@ begin
      end;
 end;
 
+procedure TFrmPartida.LimparCamposArt;
+begin
+    EdtNome.Text     := '';
+    edtGol.Text      := '';
+    edtIdAtleta.Text := '';
+    EdtNome.SetFocus;
+end;
 procedure TFrmPartida.spdLancarGolClick(Sender: TObject);
 begin
+   if (edtGol.Text <> '') or (edtNome.Text <> '') then
+   begin
     SalvarArtilharia;
+    LimparCamposArt;
+    lvArtilharia.BeginUpdate;
+   end
+   else
+   begin
+     showMessage('Campo Gol ou Nome vazio');
+     exit
+   end;
+
+end;
+
+procedure TFrmPartida.AddArtilharia(atleta, gols :string);
+var
+  item: TListViewItem;
+begin
+    try
+     item := lvArtilharia.Items.Add;
+
+
+     with item do
+     begin
+       Height := 60;
+
+      //Id Atleta
+      TListItemText(Objects.FindDrawable('txtAtleta')).Text :=  atleta;
+
+      TListItemText(Objects.FindDrawable('txtGol')).text := gols;
+
+     end;
+   except on ex:exception do
+    showMEssage('Erro ao inserir jogador na lista' + ex.Message );
+
+   end;
+end;
+
+procedure TFrmPartida.ListarGolsDia;
+begin
+  if dmTabelas.FDArtilharia.IsEmpty then
+  begin
+    with DMTABELAS.FDARTILHARIA do
+    begin
+    active := false;
+    SQL.Clear;
+    SQL.ADD('select * from artilharia ');
+    DMTABELAS.FDARTILHARIA.Params[0].AsString := dataPartida.Text;
+    active := true;
+
+       lvArtilharia.BeginUpdate;
+      lvArtilharia.Items.Clear;
+
+  while NOT DMTabelas.FDArtilharia.eof do
+  begin
+  AddArtilharia(DMTABELAS.FDArtilharia.fieldbyname('Atleta').asString,
+                DMTABELAS.FDArtilharia.fieldbyname('Gols').asString);
+
+                DMTABELAS.FDARTILHARIA.Next;
+  end;
+  end;
+  end;
+
 end;
 
 procedure TFrmPartida.InserirPartida;

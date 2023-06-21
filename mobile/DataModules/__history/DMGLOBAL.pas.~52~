@@ -26,7 +26,7 @@ type
 
     { Private declarations }
   public
-
+    procedure ConsultarArtilharia(atleta, gols, data: string);
    procedure ListarAtletas(id, atleta, posicao, status: string);
     { Public declarations }
   end;
@@ -40,7 +40,10 @@ implementation
 
 {$R *.dfm}
 
+procedure TDMTABELAS.ConsultarArtilharia(atleta, gols, data : string);
+begin
 
+end;
 
 procedure TDMTABELAS.ListarAtletas(id, atleta, posicao, status: string);
 begin

@@ -23,10 +23,8 @@ type
   private
 
 
-
     { Private declarations }
   public
-
    procedure ListarAtletas(id, atleta, posicao, status: string);
     { Public declarations }
   end;
@@ -39,8 +37,6 @@ implementation
 {%CLASSGROUP 'FMX.Controls.TControl'}
 
 {$R *.dfm}
-
-
 
 procedure TDMTABELAS.ListarAtletas(id, atleta, posicao, status: string);
 begin

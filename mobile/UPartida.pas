@@ -44,6 +44,7 @@ type
     lytListaGols: TLayout;
     Label1: TLabel;
     edtIdAtleta: TEdit;
+    lvArtilharia: TListView;
     procedure imgBackClick(Sender: TObject);
     procedure spdIniciarPartidaClick(Sender: TObject);
     procedure spdCancelarClick(Sender: TObject);
@@ -62,6 +63,8 @@ type
     procedure BuscarInfoPartida;
     procedure SalvarArtilharia;
     procedure LimparCamposArt;
+    procedure AddArtilharia(atleta, gols : string);
+    procedure ListarGolsDia;
     { Private declarations }
   public
     { Public declarations }
@@ -101,6 +104,7 @@ end;
 
 procedure TFrmPartida.FormShow(Sender: TObject);
 begin
+
     dtDataPartida.Date := Date;
     dataPartida.Date := Date;
     if tbControl.TabIndex > 0  then
@@ -244,8 +248,69 @@ begin
 end;
 procedure TFrmPartida.spdLancarGolClick(Sender: TObject);
 begin
+   if (edtGol.Text <> '') or (edtNome.Text <> '') then
+   begin
     SalvarArtilharia;
     LimparCamposArt;
+    ListarGolsDia;
+   end
+   else
+   begin
+     showMessage('Campo Gol ou Nome vazio');
+     exit
+   end;
+
+end;
+
+procedure TFrmPartida.AddArtilharia(atleta, gols :string);
+var
+  item: TListViewItem;
+begin
+    try
+     item := lvArtilharia.Items.Add;
+
+
+     with item do
+     begin
+       Height := 60;
+
+      //Id Atleta
+      TListItemText(Objects.FindDrawable('txtAtleta')).Text :=  atleta;
+
+      TListItemText(Objects.FindDrawable('txtGol')).text := gols;
+
+     end;
+   except on ex:exception do
+    showMEssage('Erro ao inserir jogador na lista' + ex.Message );
+
+   end;
+end;
+
+procedure TFrmPartida.ListarGolsDia;
+begin
+   lvArtilharia.BeginUpdate;
+   lvArtilharia.Items.Clear;
+
+   with DMTABELAS.FDARTILHARIA do begin
+  active := false;
+  SQL.Clear;
+  SQL.ADD('select atleta, gols from artilharia where data = :data');
+  ParamByName('data').AsString := DATETOSTR(dataPartida.Date);
+  active := true;
+
+
+
+  while NOT DMTabelas.FDArtilharia.eof do
+  begin
+  AddArtilharia(DMTABELAS.FDArtilharia.fieldbyname('atleta').asString,
+                DMTABELAS.FDArtilharia.fieldbyname('gols').asString);
+
+                DMTABELAS.FDARTILHARIA.Next;
+  end;
+
+  end;
+
+
 end;
 
 procedure TFrmPartida.InserirPartida;
