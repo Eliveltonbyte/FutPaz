@@ -252,7 +252,7 @@ begin
    begin
     SalvarArtilharia;
     LimparCamposArt;
-    lvArtilharia.BeginUpdate;
+    ListarGolsDia;
    end
    else
    begin
@@ -291,22 +291,23 @@ begin
    lvArtilharia.BeginUpdate;
    lvArtilharia.Items.Clear;
 
-    with DMTABELAS.FDARTILHARIA do
-    begin
-    active := false;
-    SQL.Clear;
-    SQL.ADD('select * from artilharia ');
-    active := true;
+   with DMTABELAS.FDARTILHARIA do begin
+  active := false;
+  SQL.Clear;
+  SQL.ADD('select atleta, gols from artilharia where data = :data');
+  ParamByName('data').AsString := DATETOSTR(dataPartida.Date);
+  active := true;
 
 
 
   while NOT DMTabelas.FDArtilharia.eof do
   begin
-  AddArtilharia(DMTABELAS.FDArtilharia.fieldbyname('Atleta').asString,
-                DMTABELAS.FDArtilharia.fieldbyname('Gols').asString);
+  AddArtilharia(DMTABELAS.FDArtilharia.fieldbyname('atleta').asString,
+                DMTABELAS.FDArtilharia.fieldbyname('gols').asString);
 
                 DMTABELAS.FDARTILHARIA.Next;
   end;
+
   end;
 
 

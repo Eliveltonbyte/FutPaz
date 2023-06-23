@@ -100,6 +100,7 @@ end;
 procedure TFrmPartida.FormCreate(Sender: TObject);
 begin
     tbControl.TabIndex := 0;
+    lvArtilharia.BeginUpdate;
 end;
 
 procedure TFrmPartida.FormShow(Sender: TObject);
@@ -291,13 +292,14 @@ begin
    lvArtilharia.BeginUpdate;
    lvArtilharia.Items.Clear;
 
-    with DMTABELAS.FDARTILHARIA do
-    begin
-    active := false;
-    SQL.Clear;
-    SQL.ADD('select atleta, gols from artilharia where data = :p0 ');
-    DMTABELAS.FDArtilharia.Params[0].Value := dataPartida.Date;
-    active := true;
+   with DMTABELAS.FDARTILHARIA do begin
+  active := false;
+  SQL.Clear;
+  SQL.ADD('select atleta, gols from artilharia where data = :data');
+  ParamByName('data').AsString := DATETOSTR(dataPartida.Date);
+  active := true;
+
+
 
   while NOT DMTabelas.FDArtilharia.eof do
   begin
@@ -306,6 +308,7 @@ begin
 
                 DMTABELAS.FDARTILHARIA.Next;
   end;
+
   end;
 
 

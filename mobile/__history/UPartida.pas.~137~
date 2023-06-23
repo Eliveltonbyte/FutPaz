@@ -55,6 +55,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure spdBuscAtletaClick(Sender: TObject);
     procedure spdLancarGolClick(Sender: TObject);
+    procedure dataPartidaChange(Sender: TObject);
   private
     procedure CloseMenu;
     procedure OpenMenu;
@@ -76,6 +77,11 @@ implementation
 
 uses DMGLOBAL;
 
+
+procedure TFrmPartida.dataPartidaChange(Sender: TObject);
+begin
+    ListarGolsDia;
+end;
 
 procedure TFrmPartida.dtPartidaEnter(Sender: TObject);
 begin
@@ -100,11 +106,13 @@ end;
 procedure TFrmPartida.FormCreate(Sender: TObject);
 begin
     tbControl.TabIndex := 0;
+    lvArtilharia.BeginUpdate;
+    ListarGolsDia;
 end;
 
 procedure TFrmPartida.FormShow(Sender: TObject);
 begin
-    ListarGolsDia;
+
     dtDataPartida.Date := Date;
     dataPartida.Date := Date;
     if tbControl.TabIndex > 0  then
@@ -248,17 +256,20 @@ begin
 end;
 procedure TFrmPartida.spdLancarGolClick(Sender: TObject);
 begin
-   if (edtGol.Text <> '') or (edtNome.Text <> '') then
+   lvArtilharia.BeginUpdate;
+
+   if (edtGol.Text <> '') and (edtNome.Text <> '') then
    begin
-    SalvarArtilharia;
-    LimparCamposArt;
-    lvArtilharia.BeginUpdate;
+   SalvarArtilharia;
+   LimparCamposArt;
+   ListarGolsDia;
    end
    else
    begin
      showMessage('Campo Gol ou Nome vazio');
      exit
    end;
+lvArtilharia.BeginUpdate;
 
 end;
 
@@ -288,28 +299,28 @@ end;
 
 procedure TFrmPartida.ListarGolsDia;
 begin
-  if dmTabelas.FDArtilharia.IsEmpty then
-  begin
-    with DMTABELAS.FDARTILHARIA do
-    begin
-    active := false;
-    SQL.Clear;
-    SQL.ADD('select * from artilharia ');
-    DMTABELAS.FDARTILHARIA.Params[0].AsString := dataPartida.Text;
-    active := true;
+   lvArtilharia.BeginUpdate;
+   lvArtilharia.Items.Clear;
 
-       lvArtilharia.BeginUpdate;
-      lvArtilharia.Items.Clear;
+   with DMTABELAS.FDARTILHARIA do begin
+  active := false;
+  SQL.Clear;
+  SQL.ADD('select atleta, gols from artilharia where data = :data');
+  ParamByName('data').AsString := DATETOSTR(dataPartida.Date);
+  active := true;
+
+
 
   while NOT DMTabelas.FDArtilharia.eof do
   begin
-  AddArtilharia(DMTABELAS.FDArtilharia.fieldbyname('Atleta').asString,
-                DMTABELAS.FDArtilharia.fieldbyname('Gols').asString);
+  AddArtilharia(DMTABELAS.FDArtilharia.fieldbyname('atleta').asString,
+                DMTABELAS.FDArtilharia.fieldbyname('gols').asString);
 
                 DMTABELAS.FDARTILHARIA.Next;
   end;
+
   end;
-  end;
+
 
 end;
 

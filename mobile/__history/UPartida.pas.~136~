@@ -55,6 +55,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure spdBuscAtletaClick(Sender: TObject);
     procedure spdLancarGolClick(Sender: TObject);
+    procedure dataPartidaChange(Sender: TObject);
   private
     procedure CloseMenu;
     procedure OpenMenu;
@@ -76,6 +77,11 @@ implementation
 
 uses DMGLOBAL;
 
+
+procedure TFrmPartida.dataPartidaChange(Sender: TObject);
+begin
+    ListarGolsDia;
+end;
 
 procedure TFrmPartida.dtPartidaEnter(Sender: TObject);
 begin
@@ -100,6 +106,8 @@ end;
 procedure TFrmPartida.FormCreate(Sender: TObject);
 begin
     tbControl.TabIndex := 0;
+    lvArtilharia.BeginUpdate;
+    ListarGolsDia;
 end;
 
 procedure TFrmPartida.FormShow(Sender: TObject);
@@ -248,11 +256,12 @@ begin
 end;
 procedure TFrmPartida.spdLancarGolClick(Sender: TObject);
 begin
-   if (edtGol.Text <> '') or (edtNome.Text <> '') then
+   ListarGolsDia;
+   if (edtGol.Text <> '') and (edtNome.Text <> '') then
    begin
     SalvarArtilharia;
-    LimparCamposArt;
-    ListarGolsDia;
+    lvArtilharia.BeginUpdate;
+  //  LimparCamposArt;
    end
    else
    begin
@@ -291,13 +300,13 @@ begin
    lvArtilharia.BeginUpdate;
    lvArtilharia.Items.Clear;
 
-    with DMTABELAS.FDARTILHARIA do
-    begin
-    active := false;
-    SQL.Clear;
-    SQL.ADD('select * from artilharia where data = :p0 ');
-    active := true;
-    DMTABELAS.FDArtilharia.Params[0].Value := dataPartida.Date;
+   with DMTABELAS.FDARTILHARIA do begin
+  active := false;
+  SQL.Clear;
+  SQL.ADD('select atleta, gols from artilharia where data = :data');
+  ParamByName('data').AsString := DATETOSTR(dataPartida.Date);
+  active := true;
+
 
 
   while NOT DMTabelas.FDArtilharia.eof do
@@ -307,6 +316,7 @@ begin
 
                 DMTABELAS.FDARTILHARIA.Next;
   end;
+
   end;
 
 
