@@ -45,6 +45,13 @@ type
     Label1: TLabel;
     edtIdAtleta: TEdit;
     lvArtilharia: TListView;
+    lytCapa: TLayout;
+    rectSeparadorCapa: TRectangle;
+    lvcapas: TListView;
+    dtCapaData: TDateEdit;
+    edtCapaNome: TEdit;
+    imgCapaBtn: TImage;
+    edtAtletaCapa: TEdit;
     procedure imgBackClick(Sender: TObject);
     procedure spdIniciarPartidaClick(Sender: TObject);
     procedure spdCancelarClick(Sender: TObject);
@@ -56,6 +63,7 @@ type
     procedure spdBuscAtletaClick(Sender: TObject);
     procedure spdLancarGolClick(Sender: TObject);
     procedure dataPartidaChange(Sender: TObject);
+    procedure rectFinalizarClick(Sender: TObject);
   private
     procedure CloseMenu;
     procedure OpenMenu;
@@ -115,24 +123,29 @@ begin
 
     dtDataPartida.Date := Date;
     dataPartida.Date := Date;
-    if tbControl.TabIndex > 0  then
-    begin
-     // imgIniciarPartida.Visible := false;
-    //  imgBack.Visible:= false;
-
-    end
-    else
-    begin
-   //  imgIniciarPartida.Visible := true;
-   //  imgBack.Visible:= true;
-
-    end;
+   
 
 end;
 
 procedure TFrmPartida.imgBackClick(Sender: TObject);
 begin
-  close;
+  //close;
+  if tbControl.TabIndex = 1 then
+  begin
+     tbControl.TabIndex := 0;
+  end
+  else if tbControl.TabIndex = 2 then
+  begin
+      tbControl.TabIndex := 0;
+  end
+  else if tbControl.TabIndex = 0 then
+  begin
+    close;
+  end;
+
+
+
+
 end;
 procedure TFrmPartida.CloseMenu;
 begin
@@ -163,6 +176,11 @@ begin
 end;
 
 
+procedure TFrmPartida.rectFinalizarClick(Sender: TObject);
+begin
+     tbControl.GotoVisibleTab(2);
+end;
+
 procedure TFrmPartida.btnBuscarPartidaClick(Sender: TObject);
 begin
    BuscarPartida;
@@ -173,7 +191,7 @@ begin
   with DMTABELAS.FDAtletas do begin
   active := false;
   SQL.Clear;
-  SQL.ADD('select id, atleta from atletas where atleta like :pNome');
+  SQL.ADD('select id, atleta from atletas where atleta like :pNome and Status = "ATIVO" ');
   DMTABELAS.FDAtletas.ParamByName('pNome').AsString := edtNome.Text + '%';
   active := true;
 
@@ -257,13 +275,22 @@ end;
 procedure TFrmPartida.spdLancarGolClick(Sender: TObject);
 begin
 
+    if (edtNome.Text <> '') and (edtGol.Text <> '') then
+      begin
+       SalvarArtilharia;
+       LimparCamposArt;
+       lvArtilharia.BeginUpdate;
+       ListarGolsDia;
+      end
+      else
+      begin
+        showMessage('Campo gol ou nome vazio');
+        exit
+      end;
 
 
 
-   SalvarArtilharia;
-   LimparCamposArt;
-   ListarGolsDia;
-   lvArtilharia.BeginUpdate;
+
 
 
 
@@ -299,7 +326,7 @@ begin
    lvArtilharia.BeginUpdate;
    lvArtilharia.Items.Clear;
 
-   with DMTABELAS.FDARTILHARIA do begin
+   with DMTABELAS.fdConsultaArt do begin
   active := false;
   SQL.Clear;
   SQL.ADD('select atleta, gols from artilharia where data = :data');
@@ -308,12 +335,12 @@ begin
 
 
 
-  while NOT DMTabelas.FDArtilharia.eof do
+  while NOT DMTabelas.fdConsultaArt.eof do
   begin
-  AddArtilharia(DMTABELAS.FDArtilharia.fieldbyname('atleta').asString,
-                DMTABELAS.FDArtilharia.fieldbyname('gols').asString);
+  AddArtilharia(DMTABELAS.fdConsultaArt.fieldbyname('atleta').asString,
+                DMTABELAS.fdConsultaArt.fieldbyname('gols').asString);
 
-                DMTABELAS.FDARTILHARIA.Next;
+                DMTABELAS.fdConsultaArt.Next;
   end;
 
   end;

@@ -25,4 +25,9 @@ object DMTABELAS: TDMTABELAS
     Left = 264
     Top = 16
   end
+  object fdConsultaArt: TFDQuery
+    Connection = Conn
+    Left = 104
+    Top = 112
+  end
 end

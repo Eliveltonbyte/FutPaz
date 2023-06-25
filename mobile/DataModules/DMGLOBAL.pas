@@ -16,6 +16,7 @@ type
     FDAtletas: TFDQuery;
     FDPartida: TFDQuery;
     FDARTILHARIA: TFDQuery;
+    fdConsultaArt: TFDQuery;
 
     procedure ConnBeforeConnect(Sender: TObject);
     procedure DataModuleCreate(Sender: TObject);
