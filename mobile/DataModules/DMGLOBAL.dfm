@@ -30,4 +30,9 @@ object DMTABELAS: TDMTABELAS
     Left = 104
     Top = 112
   end
+  object FDCapa: TFDQuery
+    Connection = Conn
+    Left = 344
+    Top = 32
+  end
 end
