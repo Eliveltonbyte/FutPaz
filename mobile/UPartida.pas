@@ -72,6 +72,7 @@ type
     procedure rectFinalizarClick(Sender: TObject);
     procedure imgCapaBtnClick(Sender: TObject);
     procedure SpeedButton1Click(Sender: TObject);
+    procedure dtCapaDataChange(Sender: TObject);
   private
     procedure CloseMenu;
     procedure OpenMenu;
@@ -84,6 +85,9 @@ type
     procedure ListarGolsDia;
     procedure EsconderBotao;
     procedure LançarCapa;
+    procedure AddCapa(atleta: string);
+    procedure LancarAteltaCapa;
+    procedure limparCamposCapa;
     { Private declarations }
   public
     { Public declarations }
@@ -101,6 +105,11 @@ uses DMGLOBAL;
 procedure TFrmPartida.dataPartidaChange(Sender: TObject);
 begin
   ListarGolsDia;
+end;
+
+procedure TFrmPartida.dtCapaDataChange(Sender: TObject);
+begin
+    LancarAteltaCapa;
 end;
 
 procedure TFrmPartida.dtPartidaEnter(Sender: TObject);
@@ -128,6 +137,8 @@ begin
   tbControl.TabIndex := 0;
   lvArtilharia.BeginUpdate;
   ListarGolsDia;
+  lvcapas.BeginUpdate;
+  LancarAteltaCapa;
   // EsconderBotao;
 end;
 
@@ -136,7 +147,8 @@ begin
   EsconderBotao;
   dtDataPartida.Date := Date;
   dataPartida.Date := Date;
-
+  dtCapaData.Date := Date;
+  LancarAteltaCapa;
 end;
 
 procedure TFrmPartida.EsconderBotao;
@@ -159,7 +171,7 @@ begin
   begin
     close;
   end;
-
+   limparCamposCapa;
 end;
 
 procedure TFrmPartida.imgCapaBtnClick(Sender: TObject);
@@ -329,8 +341,17 @@ end;
 procedure TFrmPartida.SpeedButton1Click(Sender: TObject);
 begin
     LançarCapa;
+    LancarAteltaCapa;
+    limparCamposCapa;
 end;
 
+
+procedure TFrmPartida.limparCamposCapa;
+begin
+    edtCapaNome.Text := '';
+    edtIDAtletaCapa.Text := '';
+    edtCapaNome.SetFocus;
+end;
 procedure TFrmPartida.LançarCapa;
 begin
 
@@ -354,6 +375,52 @@ begin
   end;
 
 
+end;
+procedure TFrmPartida.LancarAteltaCapa;
+begin
+    lvCapas.BeginUpdate;
+    LvCapas.Items.Clear;
+
+  with DMTABELAS.fdConsultaCapa do
+  begin
+    Active := false;
+    SQL.Clear;
+    SQL.Add('select atleta from capa where data = :data');
+    ParamByName('data').AsString := DATETOSTR(dtCapaData.Date);
+    Active := true;
+
+    while NOT DMTABELAS.fdConsultaCapa.eof do
+    begin
+      AddCapa(DMTABELAS.fdConsultaCapa.FieldByName('atleta').AsString);
+
+
+      DMTABELAS.fdConsultaCapa.Next;
+    end;
+
+  end;
+end;
+
+procedure TFrmPartida.AddCapa(atleta:string);
+var
+item: TListViewItem;
+begin
+  try
+    item := lvcapas.Items.Add;
+
+    with item do
+    begin
+      Height := 40;
+
+      //Atleta
+      TListItemText(Objects.FindDrawable('txtAtleta')).Text := atleta;
+
+
+    end;
+  except
+    on ex: exception do
+      ShowMessage('Erro ao inserir jogador na lista' + ex.Message);
+
+  end;
 end;
 
 procedure TFrmPartida.AddArtilharia(atleta, gols: string);

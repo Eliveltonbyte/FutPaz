@@ -6,9 +6,27 @@
     <PropertyGroup>
         <DeviceId Condition="'$(Platform)'=='Android'"/>
         <DeviceId Condition="'$(Platform)'=='Android64'">RX8R70CMKGK</DeviceId>
-        <DeviceId Condition="'$(Platform)'=='iOSDevice64'"/>
-        <DeviceId Condition="'$(Platform)'=='iOSSimARM64'"/>
     </PropertyGroup>
+    <ItemGroup Condition="'$(Platform)'=='Win64'">
+        <DeployFile Include="Win32\Debug\banco.db" Condition="'$(Config)'=='Debug'">
+            <RemoteDir>FutPaz\</RemoteDir>
+            <RemoteName>banco.db</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+        <DeployFile Include="Win32\Debug\banco.db" Condition="'$(Config)'=='Release'">
+            <RemoteDir>FutPaz\</RemoteDir>
+            <RemoteName>banco.db</RemoteName>
+            <DeployClass>File</DeployClass>
+            <Operation>0</Operation>
+            <LocalCommand/>
+            <RemoteCommand/>
+            <Overwrite>True</Overwrite>
+        </DeployFile>
+    </ItemGroup>
     <ItemGroup Condition="'$(Platform)'=='Win32'">
         <DeployFile Include="Win32\Debug\FutPaz.exe" Condition="'$(Config)'=='Debug'">
             <RemoteDir>FutPaz\</RemoteDir>
@@ -540,27 +558,4 @@
             <Overwrite>True</Overwrite>
         </DeployFile>
     </ItemGroup>
-    <ItemGroup Condition="'$(Platform)'=='Win64'">
-        <DeployFile Include="Win32\Debug\banco.db" Condition="'$(Config)'=='Debug'">
-            <RemoteDir>FutPaz\</RemoteDir>
-            <RemoteName>banco.db</RemoteName>
-            <DeployClass>File</DeployClass>
-            <Operation>0</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
-        <DeployFile Include="Win32\Debug\banco.db" Condition="'$(Config)'=='Release'">
-            <RemoteDir>FutPaz\</RemoteDir>
-            <RemoteName>banco.db</RemoteName>
-            <DeployClass>File</DeployClass>
-            <Operation>0</Operation>
-            <LocalCommand/>
-            <RemoteCommand/>
-            <Overwrite>True</Overwrite>
-        </DeployFile>
-    </ItemGroup>
-    <ItemGroup Condition="'$(Platform)'=='Linux64'"/>
-    <ItemGroup Condition="'$(Platform)'=='iOSDevice64'"/>
-    <ItemGroup Condition="'$(Platform)'=='iOSSimARM64'"/>
 </Project>

@@ -19,6 +19,7 @@ type
     FDARTILHARIA: TFDQuery;
     fdConsultaArt: TFDQuery;
     FDCapa: TFDQuery;
+    fdConsultaCapa: TFDQuery;
 
     procedure ConnBeforeConnect(Sender: TObject);
     procedure DataModuleCreate(Sender: TObject);
