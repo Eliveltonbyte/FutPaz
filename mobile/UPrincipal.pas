@@ -3,7 +3,8 @@ unit UPrincipal;
 interface
 
 uses
-  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
+  System.SysUtils, System.Types, System.UITypes, System.Classes,
+  System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs,
   FMX.Controls.Presentation, FMX.StdCtrls, FMX.Objects, FMX.Layouts;
 
@@ -34,6 +35,7 @@ type
     Image3: TImage;
     procedure rectMenuJogadorClick(Sender: TObject);
     procedure Rectangle1Click(Sender: TObject);
+    procedure Rectangle2Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -47,23 +49,31 @@ implementation
 
 {$R *.fmx}
 
-uses UJogadores, UPartida;
+uses UJogadores, UPartida, UCapaTotal, UCadAtleta;
 
 procedure TFrmPrincipal.Rectangle1Click(Sender: TObject);
 begin
-   if NOT Assigned(FrmPartida) then
-      Application.CreateForm(TFrmPartida, FrmPartida);
+  if NOT Assigned(FrmPartida) then
+    Application.CreateForm(TFrmPartida, FrmPartida);
 
-    FrmPartida.Show;
-    FrmPartida.tbControl.gotovisibletab(0);
+  FrmPartida.Show;
+  FrmPartida.tbControl.gotovisibletab(0);
+end;
+
+procedure TFrmPrincipal.Rectangle2Click(Sender: TObject);
+begin
+  if NOT Assigned(FrmCapaTotal) then
+    Application.CreateForm(TFrmCapaTotal, FrmCapaTotal);
+
+  FrmCapaTotal.Show;
 end;
 
 procedure TFrmPrincipal.rectMenuJogadorClick(Sender: TObject);
 begin
-   if NOT Assigned(FrmJogador) then
-      Application.CreateForm(TFrmJogador, FrmJogador);
+  if NOT Assigned(FrmJogador) then
+    Application.CreateForm(TFrmJogador, FrmJogador);
 
-    FrmJogador.Show;
+  FrmJogador.Show;
 
 end;
 

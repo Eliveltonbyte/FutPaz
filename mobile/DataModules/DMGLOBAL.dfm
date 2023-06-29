@@ -27,7 +27,7 @@ object DMTABELAS: TDMTABELAS
   end
   object fdConsultaArt: TFDQuery
     Connection = Conn
-    Left = 104
+    Left = 208
     Top = 112
   end
   object FDCapa: TFDQuery
@@ -39,5 +39,10 @@ object DMTABELAS: TDMTABELAS
     Connection = Conn
     Left = 176
     Top = 184
+  end
+  object fdconn: TFDQuery
+    Connection = Conn
+    Left = 312
+    Top = 160
   end
 end

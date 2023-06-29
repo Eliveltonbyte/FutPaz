@@ -20,6 +20,7 @@ type
     fdConsultaArt: TFDQuery;
     FDCapa: TFDQuery;
     fdConsultaCapa: TFDQuery;
+    fdconn: TFDQuery;
 
     procedure ConnBeforeConnect(Sender: TObject);
     procedure DataModuleCreate(Sender: TObject);

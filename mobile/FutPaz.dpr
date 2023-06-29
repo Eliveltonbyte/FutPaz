@@ -7,7 +7,8 @@ uses
   UJogadores in 'UJogadores.pas' {FrmJogador},
   UCadAtleta in 'UCadAtleta.pas' {FrmCadAtleta},
   DMGLOBAL in 'DataModules\DMGLOBAL.pas' {DMTABELAS: TDataModule},
-  UPartida in 'UPartida.pas' {FrmPartida};
+  UPartida in 'UPartida.pas' {FrmPartida},
+  UCapaTotal in 'UCapaTotal.pas' {FrmCapaTotal};
 
 {$R *.res}
 
@@ -19,5 +20,6 @@ begin
   Application.CreateForm(TDMTABELAS, DMTABELAS);
   Application.CreateForm(TDMTABELAS, DMTABELAS);
   Application.CreateForm(TFrmPartida, FrmPartida);
+  Application.CreateForm(TFrmCapaTotal, FrmCapaTotal);
   Application.Run;
 end.
