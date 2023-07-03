@@ -1,0 +1,878 @@
+object FrmPartida: TFrmPartida
+  Left = 0
+  Top = 0
+  ActiveControl = tbCapa
+  Caption = 'Nova Partida'
+  ClientHeight = 534
+  ClientWidth = 338
+  Fill.Kind = Solid
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  OnShow = FormShow
+  DesignerMasterStyle = 3
+  object tbControl: TTabControl
+    Align = Client
+    Size.Width = 338.000000000000000000
+    Size.Height = 477.000000000000000000
+    Size.PlatformDefault = False
+    StyleLookup = 'tabcontrolstyle'
+    TabHeight = 49.000000000000000000
+    TabIndex = 2
+    TabOrder = 0
+    TabPosition = None
+    Sizes = (
+      338s
+      477s
+      338s
+      477s
+      338s
+      477s)
+    object tbPrincipal: TTabItem
+      CustomIcon = <
+        item
+        end>
+      IsSelected = False
+      Size.Width = 8.000000000000000000
+      Size.Height = 8.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = ''
+      TabOrder = 0
+      ExplicitSize.cx = 8.000000000000000000
+      ExplicitSize.cy = 8.000000000000000000
+      object lvPartida: TListView
+        ItemAppearanceClassName = 'TListItemAppearance'
+        ItemEditAppearanceClassName = 'TListItemShowCheckAppearance'
+        HeaderAppearanceClassName = 'TListHeaderObjects'
+        FooterAppearanceClassName = 'TListHeaderObjects'
+        Align = Client
+        Size.Width = 338.000000000000000000
+        Size.Height = 477.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+      end
+    end
+    object tbArtilharia: TTabItem
+      CustomIcon = <
+        item
+        end>
+      IsSelected = False
+      Size.Width = 8.000000000000000000
+      Size.Height = 8.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = ''
+      TabOrder = 0
+      ExplicitSize.cx = 8.000000000000000000
+      ExplicitSize.cy = 8.000000000000000000
+      object lytListaGols: TLayout
+        Align = Top
+        Position.Y = 161.000000000000000000
+        Size.Width = 338.000000000000000000
+        Size.Height = 228.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        object lvArtilharia: TListView
+          ItemAppearanceClassName = 'TDynamicAppearance'
+          ItemEditAppearanceClassName = 'TDynamicAppearance'
+          HeaderAppearanceClassName = 'TListHeaderObjects'
+          FooterAppearanceClassName = 'TListHeaderObjects'
+          ItemSpaces.Left = 0.000000000000000000
+          ItemSpaces.Right = 0.000000000000000000
+          Align = Client
+          Size.Width = 338.000000000000000000
+          Size.Height = 228.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          ItemAppearance.ItemHeight = 60
+          ItemAppearanceObjects.ItemObjects.ObjectsCollection = <
+            item
+              AppearanceObjectName = 'txtAtleta'
+              AppearanceClassName = 'TTextObjectAppearance'
+              Appearance.Font.Size = 16.000000000000000000
+              Appearance.Font.StyleExt = {00060000000000000004000000}
+              Appearance.TextAlign = Leading
+              Appearance.TextColor = xFF7E55FF
+              Appearance.Width = 119.000000000000000000
+              Appearance.Height = 17.000000000000000000
+              Appearance.PlaceOffset.X = 7.000000000000000000
+              Appearance.PlaceOffset.Y = 21.000000000000000000
+            end
+            item
+              AppearanceObjectName = 'txtGol'
+              AppearanceClassName = 'TTextObjectAppearance'
+              Appearance.Font.Size = 14.000000000000000000
+              Appearance.Font.StyleExt = {00070000000000000004000000}
+              Appearance.TextColor = xFFEC5353
+              Appearance.Width = 118.000000000000000000
+              Appearance.Height = 18.000000000000000000
+              Appearance.PlaceOffset.X = 156.000000000000000000
+              Appearance.PlaceOffset.Y = 20.000000000000000000
+            end
+            item
+              AppearanceObjectName = 'Text3'
+              AppearanceClassName = 'TTextObjectAppearance'
+              Appearance.Width = 121.000000000000000000
+              Appearance.Height = 17.000000000000000000
+              Appearance.PlaceOffset.X = 152.000000000000000000
+              Appearance.PlaceOffset.Y = -72.000000000000000000
+            end>
+          ItemAppearanceObjects.ItemEditObjects.ObjectsCollection = <
+            item
+              AppearanceObjectName = 'Text1'
+              AppearanceClassName = 'TTextObjectAppearance'
+            end>
+          CanSwipeDelete = False
+          ShowSelection = False
+        end
+      end
+      object lytBuscarJogador: TLayout
+        Align = Top
+        Size.Width = 338.000000000000000000
+        Size.Height = 161.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        object edtNome: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Top
+          TabOrder = 0
+          KeyboardType = Alphabet
+          Position.X = 20.000000000000000000
+          Position.Y = 49.000000000000000000
+          Margins.Left = 20.000000000000000000
+          Margins.Top = 7.000000000000000000
+          Margins.Right = 70.000000000000000000
+          Margins.Bottom = -2.000000000000000000
+          Size.Width = 248.000000000000000000
+          Size.Height = 32.000000000000000000
+          Size.PlatformDefault = False
+          TextPrompt = 'Digite o Nome do Jogador'
+          CharCase = ecUpperCase
+        end
+        object imgConAtleta: TImage
+          MultiResBitmap.Height = 40
+          MultiResBitmap.Width = 40
+          MultiResBitmap = <
+            item
+              Width = 40
+              Height = 40
+              PNG = {
+                89504E470D0A1A0A0000000D49484452000000280000002808060000008CFEB8
+                6D000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+                05A5494441545847ED976D50146500C79FDD6777EF0D0E39F142050454208511
+                CBB241D21A6B263F58234D39CD9833314D945A96699C2F0DC30751072D9D869A
+                C3B2A99972C60F5A5FB266D44152B43A11051589178113E3C593F36EF7F6F6B5
+                E759375254C4BD45FBD08F0FB7CFF3EC3EF7E379DBFF81FF3A84FE692AEBB67D
+                994D536411847491AC289306D55012AE1F47C40F4092EC916571BF2829FB2B4B
+                DFBCA83D3002A60A7A2ABD4F908CB58A22C81989A919F0D1CC2956477C1CB03B
+                E2B4768E0D8370280C9ADB3BF9EEB60EC541A94D7C545889447DDA0D77C014C1
+                B7BC5EDACD5BBD9C482E9D9A99629B377F0181D05BEF8CAA28E0786DADDAD6D1
+                1DB1D3CADE3E6BF49DEA9212516F1E2266C10F76EC76D900F3B32BD93DF39985
+                0BED344DEB2DA34314455073F83037D8DFD72445D817B6AE5F714D6FD2884910
+                8F5C52D87A7C5276DAACC2A71630F71AB5BBA1AA2A38567754F8ABBDABA1CFC6
+                17DE3C92A4FE69083767F5BA93E366C42287C1CF16162C60C64D70E7BA59CB17
+                7AB5866141BC2138995C5AB870B12316B97FC07D3C8B9608A790AF79B6EF7E5C
+                AF362E8877EBB4CC54DBFDAEB991A0505F9919293686A6AAF42A6382EBB77B73
+                F05152307F7EEC43378C427402844598E7D95E9D85CB06471016E173CE8CA91D
+                0E419220756A064912D4125C36244851962539E810D68BA6939331C50A215584
+                AF0D09CAAA9212EF74EA25F389C37D13522ABE3624A80ECA8936BB4D2F998FDD
+                61075200B8F0B52141BCF2D0D93A76A0BE396750FB064382D005027C84D34BE6
+                C3B22C7010AE00BE36244812D01FBA1ED24BE6C3864200C5B56E7C6D48302ACA
+                077064D28BA6D3DC71899704613FBE362428A3B089F31C8E4C6683FBEC6EBBA4
+                08327100970D09E2248CC3667B53ADE986ADA84F0754CF569616FF89CB860431
+                38091F3BD5CDE33C6716A220803AD4A72CC82BF52AE38238A6DBA072FAD74387
+                B43C172BB88F9A2387393433DF579416D7EBD5C6053D3BBE7A2F2283D97C8405
+                A74E9E8849123FEB3B58170DF4F736F6DAF8157AB586A1B7FDC61D7B36A168E4
+                C9CFCF7340488273E72F023E18525F5CB68CC091E97EC0D38A237F60A0B75189
+                44160D8FFC50FF1C351B2AF76CA12DF487F9B3F31C160B0324490217DAFC1C45
+                12BEFA33E7C68782012A2D6D0A0A3A23FFEF78B7B6361E557EFAA52E22F3E1EF
+                A86B975EDEFCF147B79DFEA31F415525367CFA7515CD58963F969FEBC0415514
+                44507FFA2C2B0962C5E6B5C5153809931455C54B300F47269C4A1CF1F1C011E7
+                D0BA60C3AC76083777E83F3BD16EC51BE2E635379C5109BEB26F1FCCBACC7E4B
+                59AC2FCD417210427416CAC0D780E4A2D19D9BD7146FD26FD558B76DCF749202
+                450C8A4CB2A2A6A841793CAEA75DD400CAF6FEA8281E5024807EB8DF384A46E2
+                9E8265656594E84CDF4BDBEC8BE6CC9EE18024929365D05077968B90D16F2AD6
+                14DFB2A8CD6644C17777EDB23825E78FF109CCD3B93367D949947615B476FE38
+                DDC40A51EE872DEFBFF13A1A91B1CC35773F66CACABCF604D97924D185E472F3
+                3539555191DC05568C440E32839DCBC75A0E73C7112CDDEA4DA02858E34A1A9F
+                93939365C53B52457FE7CF3570D706F95A3AD8B5B8BCBC5CD26F1F536E13F46C
+                F93C1132D6DA2477E2B4ECE95956344A780783F3CD0DDCD540B43E0C43CF7DB6
+                7A7554BF7DCCB9658AD7EFDCFD088456DF44373D3D3B2B5B93C37378B1A5850F
+                5C151A9920F1FC8394C30C8D209AD63448D327E894A40973D3A70DBD0EDA5A4E
+                457BFAA51686610BCA57AD0AEBD50F0C4D706365758602C99399E9EEC4C993FF
+                95FBADA355147BFA3B64417A729BA724A8573F50B42956497A6F467A7AD22D72
+                5DADA2D4DD7B9957A4790F4B0E7343F0BA9A3F313979683DFAFC576424D7A742
+                B9E093B525037AF54341932213C019DFE52BE805A100BFBF47E1DB3B0392A014
+                54AC79FB8A76D743E4C6A8C9CAAB62971F45B21AA1ABD3FF3B01A4B9685ABBB4
+                B6FF190900FE061315648AB446D0750000000049454E44AE426082}
+              FileName = 
+                'C:\Users\User\Documents\DelphiProjects\Teste\FutPaz\FutPaz\mobil' +
+                'e\images\icons8-pesquisar-40.png'
+            end>
+          Anchors = [akTop, akRight]
+          Position.X = 274.000000000000000000
+          Position.Y = 46.000000000000000000
+          Size.Width = 43.000000000000000000
+          Size.Height = 35.000000000000000000
+          Size.PlatformDefault = False
+          object spdBuscAtleta: TSpeedButton
+            Align = Client
+            Size.Width = 43.000000000000000000
+            Size.Height = 48.000000000000000000
+            Size.PlatformDefault = False
+            OnClick = spdBuscAtletaClick
+          end
+        end
+        object lblGol: TLabel
+          Align = Center
+          Margins.Top = 10.000000000000000000
+          Margins.Right = 50.000000000000000000
+          Size.Width = 53.000000000000000000
+          Size.Height = 90.000000000000000000
+          Size.PlatformDefault = False
+          Text = 'GOLS:'
+          TabOrder = 3
+        end
+        object edtGol: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Center
+          TabOrder = 4
+          KeyboardType = NumberPad
+          TextSettings.Font.Family = 'Roboto'
+          TextSettings.Font.Size = 14.000000000000000000
+          TextSettings.Font.StyleExt = {00070000000000000004000000}
+          TextSettings.VertAlign = Trailing
+          Margins.Left = 50.000000000000000000
+          Margins.Top = -3.000000000000000000
+          Size.Width = 46.000000000000000000
+          Size.Height = 32.000000000000000000
+          Size.PlatformDefault = False
+          StyledSettings = [Family, FontColor]
+        end
+        object rectAddGol: TRectangle
+          Align = Bottom
+          Fill.Color = xFF7856CF
+          Opacity = 0.899999976158142100
+          Margins.Left = 18.000000000000000000
+          Margins.Top = 3.000000000000000000
+          Margins.Right = 18.000000000000000000
+          Margins.Bottom = 5.000000000000000000
+          Position.X = 18.000000000000000000
+          Position.Y = 120.000000000000000000
+          Size.Width = 302.000000000000000000
+          Size.Height = 34.000000000000000000
+          Size.PlatformDefault = False
+          XRadius = 5.000000000000000000
+          YRadius = 5.000000000000000000
+          object spdLancarGol: TSpeedButton
+            Align = Client
+            StyledSettings = []
+            Size.Width = 302.000000000000000000
+            Size.Height = 48.000000000000000000
+            Size.PlatformDefault = False
+            Text = 'Adicionar na Lista'
+            TextSettings.Font.Family = 'Arial'
+            TextSettings.Font.Size = 24.000000000000000000
+            TextSettings.FontColor = claWhite
+            TextSettings.FontColorForState.Pressed = x6FC03C3C
+            TextSettings.VertAlign = Leading
+            OnClick = spdLancarGolClick
+          end
+        end
+        object rectDivisor2: TRectangle
+          Align = Bottom
+          Fill.Color = claBisque
+          Position.Y = 159.000000000000000000
+          Size.Width = 338.000000000000000000
+          Size.Height = 2.000000000000000000
+          Size.PlatformDefault = False
+          Stroke.Color = xFFCACACA
+        end
+        object dataPartida: TDateEdit
+          Date = 45095.000000000000000000
+          OnChange = dataPartidaChange
+          Align = Top
+          Margins.Bottom = 10.000000000000000000
+          Size.Width = 338.000000000000000000
+          Size.Height = 32.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 1
+          TextSettings.HorzAlign = Center
+          ParentShowHint = False
+          ShowHint = False
+        end
+        object edtIdPartida: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          TabOrder = 2
+          Position.X = 219.000000000000000000
+          Position.Y = 4.000000000000000000
+          Size.Width = 37.000000000000000000
+          Size.Height = 32.000000000000000000
+          Size.PlatformDefault = False
+          Visible = False
+        end
+        object edtIdAtleta: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          TabOrder = 5
+          Position.X = 214.000000000000000000
+          Position.Y = 89.000000000000000000
+          Size.Width = 51.000000000000000000
+          Size.Height = 32.000000000000000000
+          Size.PlatformDefault = False
+          Visible = False
+        end
+      end
+      object rectFinalizar: TRectangle
+        Align = Bottom
+        Fill.Color = xFF7856CF
+        Margins.Left = 20.000000000000000000
+        Margins.Right = 20.000000000000000000
+        Margins.Bottom = 10.000000000000000000
+        Position.X = 20.000000000000000000
+        Position.Y = 416.000000000000000000
+        Size.Width = 298.000000000000000000
+        Size.Height = 51.000000000000000000
+        Size.PlatformDefault = False
+        Stroke.Color = claWhite
+        XRadius = 8.000000000000000000
+        YRadius = 8.000000000000000000
+        OnClick = rectFinalizarClick
+        object Label1: TLabel
+          Align = Center
+          StyledSettings = [Family, Size, Style]
+          Opacity = 0.800000011920929000
+          Size.Width = 216.000000000000000000
+          Size.Height = 37.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.FontColor = claWhite
+          TextSettings.HorzAlign = Center
+          Text = 'Finalizar Lan'#231'amento'
+          TabOrder = 0
+        end
+      end
+    end
+    object tbCapa: TTabItem
+      CustomIcon = <
+        item
+        end>
+      IsSelected = True
+      Size.Width = 8.000000000000000000
+      Size.Height = 8.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'tabitemcustom'
+      TabOrder = 0
+      ExplicitSize.cx = 8.000000000000000000
+      ExplicitSize.cy = 8.000000000000000000
+      object lytCapa: TLayout
+        Align = Top
+        Size.Width = 338.000000000000000000
+        Size.Height = 161.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        object rectSeparadorCapa: TRectangle
+          Align = Bottom
+          Position.Y = 159.000000000000000000
+          Size.Width = 338.000000000000000000
+          Size.Height = 2.000000000000000000
+          Size.PlatformDefault = False
+          Stroke.Color = xFF32089F
+        end
+        object dtCapaData: TDateEdit
+          Date = 45102.000000000000000000
+          OnChange = dtCapaDataChange
+          Align = Top
+          Size.Width = 338.000000000000000000
+          Size.Height = 32.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 1
+          TextSettings.HorzAlign = Center
+        end
+        object edtCapaNome: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Left
+          TabOrder = 2
+          Position.X = 10.000000000000000000
+          Position.Y = 43.000000000000000000
+          Margins.Left = 10.000000000000000000
+          Margins.Top = -18.000000000000000000
+          Size.Width = 279.000000000000000000
+          Size.Height = 32.000000000000000000
+          Size.PlatformDefault = False
+          TextPrompt = 'DIGITE O NOME DO ATLETA'
+          CharCase = ecUpperCase
+        end
+        object imgCapaBtn: TImage
+          MultiResBitmap.Height = 40
+          MultiResBitmap.Width = 40
+          MultiResBitmap = <
+            item
+              Width = 40
+              Height = 40
+              PNG = {
+                89504E470D0A1A0A0000000D49484452000000280000002808060000008CFEB8
+                6D000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+                05AF494441545847ED975B6C145518C7CFCE99999DDD6D175ADAB54891164A5B
+                4B972E172FA91034A8911063A851E2832436C62AA028825D2EA6E90305525088
+                A96641319A28090FA04F5E02155001B1F4B25B8A946E4BB74B6B2F2C97EEECCC
+                CED57386B18102A5CC4EC1077F7D9873BE3373F6DFEF9CF3CD7FC07F1D8B7E35
+                95B55B3FCFA348A20442AA4456940779954DC371C6E2188004D12DCBE27E5152
+                F65797BF7E567B60044C15E8ADF63D42D04C0D69210A5C93B361CED4298C2339
+                09D81D49DA788C8D82E8601404DB3BF950B043B1926A331F175620A175DA0DB7
+                C014816FF87C948B677CA2482C2D9AE3B615B8675A10FAE8AD511505B404026A
+                63BD9FA329656F1F137F6B575999A80F0F91B0C0F7B6EF4EB501FAC7D40CD78C
+                27172EB45314A58F8C0E5114C1E143876297FBFB9A258E7D6ECBBAE597F4218D
+                8404E2CCA54599DF33F31E2A2A7E7C017DA7ACDD0E5555C16FC78E087FB7871A
+                FB6CFCBCEB3349E85743B8628CCF95E12C48441C063F3BAF78013D3EDD55E862
+                AD9FE9610DC302F181106562E9BC858B1D8988FB173CC753688B080AF18A77DB
+                EE397AD8B8407C5A3D7366DAEE76CF8D0489E62A9AEDB6D11459A3878C095CB7
+                CD978F4BC9C36E77E2A91BC60C54017811BABDDB76E5E2BEC10CC2125CE7CC58
+                DAE15808024C9E964D10167209EE1B124892D625D35011D6BBA693933D858190
+                2CC16D43026555C94C763AF59EF924E1B92DD264DC3624508DC92936BB4DEF99
+                8FDD61075214A4E2B6218178E7A1DA3A76A0B9E30CAFFD822181300944782EA6
+                F7CC876559EC7C22B86D48206181E1C1AB837ACF7CD8C14180EC5A176E1B1218
+                17E503D832E95DD369EB38CF4B82B01FB70D099491D9C47E0E5B26B3C1737605
+                CF2B826C3980FB860462278CCD667B73C074856DCD7EC50A557F7579E939DC37
+                2410839DF089537E1EFB39B31005019C3C15E065415EA1878C0BC4369D824AC3
+                AF070F6A7E2E51F01C876B0FC5D0CA7C5B555E5AAF878D0BF46EFFE21D4106B3
+                788E05A74E1C4F48247EB6EE9763F1487F6FA0D7C62FD7C31A86DEF61BB6EFD9
+                88AC91D7E3713B2024C0E916F4714690EAB38B175BB065BA1BF0B262CB1F19E8
+                0D281CB768B8E587FA75D4ACAFDEB399B252EF7B66B91D562B0D244902E782E1
+                9822F075FEA6D313084225D35D2E647446FEDFF1696D0B34293FFF54CB897CF4
+                1BF2D2F917377DF8C14DD57FF4195455CBFA8FBFACA168EBB2D99E420736AAA2
+                2082FA063F2B0962D5A635A555D8091324592349D08D2D1376258EE464E04872
+                6853B051562BC26D1D9D7C17FEEC44A7151F88EBF7DC704625F0A57DFB60EE05
+                F66BD2CABC3017898310A25A2883BA46242E1EDFB16975E946FD568DB55BF74C
+                2748504223CB242B6AA6CAC913709C4A220790B70FC745F1802201F4E17EAD94
+                8CC41D0556545490A2336B2F65B32F9A3BABC00109244E9641E31FFE18A7C6BF
+                AA5A5D7AC3A6369B1105BEBD73A7D52939BF4F1E47CF2F9C51642790DB55D0DE
+                F9B3A19915E2B1EF36BFFBDAAB282363E96B6E5F662A2A7CF671B2B336259599
+                5F58E8D1C4A90A2A070D675891E37EA02F772E1B6B71985B66B07C8B6F1C49C2
+                C3A96913F2F3F373197C2255F4D772BA2976E9327794BA127ABEB2B252D26F1F
+                536E12E8DDFC690AA499A369AE949CBCE9B90CCA123EC1A0E52F7FEC6284AB8F
+                C2C1A73F59B52AAEDF3EE6DCB0C4EB76EC7E0042A66EA26BFCF4BCDC3C4D1C5E
+                C3B3ADAD7CE4221FA0AF589EB997E230431944CBFA10A4A8E3E99969E9795939
+                43AF8360EB997877FFD5569A668B2B57AE8CEAE17B86267043F5AE6C051227A6
+                664D4C9934297B48DC998E36F162777F872C488F6EF5965DD1C3F7146D895582
+                DA9B9D959576BDB8D6509B18E9EABDC02BD213F74B1CE69A404EF54CCCC818DA
+                8FC1708FDCDFD5DBA742B9F8A33565037AF8BEA08922ECA02978A107BD201410
+                0E772B3DED9D1149508AAB56BFD9A3DD751FB996355979B92F14AEAB3D764408
+                75864F5A80F4185AD69036F63F2301C03F5FF063A8A9361E580000000049454E
+                44AE426082}
+              FileName = 'C:\projetos\FutPaz\FutPaz\mobile\images\icons8-pesquisar-40.png'
+            end>
+          Align = Right
+          Margins.Top = 5.000000000000000000
+          Margins.Right = 10.000000000000000000
+          Margins.Bottom = 30.000000000000000000
+          Position.X = 278.000000000000000000
+          Position.Y = 37.000000000000000000
+          Size.Width = 50.000000000000000000
+          Size.Height = 37.000000000000000000
+          Size.PlatformDefault = False
+          OnClick = imgCapaBtnClick
+        end
+        object edtIDAtletaCapa: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          TabOrder = 4
+          Position.X = 8.000000000000000000
+          Position.Y = 80.000000000000000000
+          Size.Width = 33.000000000000000000
+          Size.Height = 32.000000000000000000
+          Size.PlatformDefault = False
+          Visible = False
+        end
+        object rectAddJogCapa: TRectangle
+          Align = Bottom
+          Fill.Color = xFF8402E0
+          HitTest = False
+          Margins.Left = 5.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Margins.Bottom = 5.000000000000000000
+          Position.X = 5.000000000000000000
+          Position.Y = 104.000000000000000000
+          Size.Width = 328.000000000000000000
+          Size.Height = 50.000000000000000000
+          Size.PlatformDefault = False
+          Stroke.Color = claWhite
+          XRadius = 7.000000000000000000
+          YRadius = 7.000000000000000000
+          object SpeedButton1: TSpeedButton
+            Align = Client
+            StyledSettings = []
+            Size.Width = 328.000000000000000000
+            Size.Height = 48.000000000000000000
+            Size.PlatformDefault = False
+            Text = 'ADICIONAR JOGADOR'
+            TextSettings.Font.Family = 'Open Sans'
+            TextSettings.Font.Size = 18.000000000000000000
+            TextSettings.Font.StyleExt = {00060000000000000004000000}
+            TextSettings.FontColor = claWhite
+            OnClick = SpeedButton1Click
+          end
+        end
+      end
+      object lvcapas: TListView
+        ItemAppearanceClassName = 'TDynamicAppearance'
+        ItemEditAppearanceClassName = 'TDynamicAppearance'
+        HeaderAppearanceClassName = 'TListHeaderObjects'
+        FooterAppearanceClassName = 'TListHeaderObjects'
+        Align = Client
+        Size.Width = 338.000000000000000000
+        Size.Height = 316.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        ItemAppearance.ItemHeight = 40
+        ItemAppearanceObjects.ItemObjects.ObjectsCollection = <
+          item
+            AppearanceObjectName = 'txtAtleta'
+            AppearanceClassName = 'TTextObjectAppearance'
+            Appearance.Font.Size = 16.000000000000000000
+            Appearance.Font.StyleExt = {00060000000000000004000000}
+            Appearance.TextAlign = Leading
+            Appearance.TextVertAlign = Leading
+            Appearance.TextColor = claBlack
+            Appearance.Width = 116.000000000000000000
+            Appearance.Height = 25.000000000000000000
+            Appearance.PlaceOffset.X = 3.000000000000000000
+            Appearance.PlaceOffset.Y = 8.000000000000000000
+          end>
+        ItemAppearanceObjects.ItemEditObjects.ObjectsCollection = <
+          item
+            AppearanceObjectName = 'Text1'
+            AppearanceClassName = 'TTextObjectAppearance'
+          end>
+        CanSwipeDelete = False
+        ShowSelection = False
+      end
+    end
+  end
+  object lytPrincipal: TLayout
+    Align = Contents
+    Size.Width = 296.000000000000000000
+    Size.Height = 534.000000000000000000
+    Size.PlatformDefault = False
+    Visible = False
+    TabOrder = 2
+    TabStop = False
+    object rectPartida: TRectangle
+      Align = Bottom
+      Fill.Color = claWhite
+      Margins.Bottom = -141.000000000000000000
+      Position.Y = 534.000000000000000000
+      Size.Width = 296.000000000000000000
+      Size.Height = 141.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Color = xFF0D1ACC
+      Stroke.Cap = Round
+      Stroke.Dash = Custom
+      Stroke.CustomDash = {02000000000040400000803F00000000}
+      XRadius = 8.000000000000000000
+      YRadius = 8.000000000000000000
+      object dtDataPartida: TDateEdit
+        Date = 45092.000000000000000000
+        Align = Scale
+        FirstDayOfWeek = dowWednesday
+        Position.X = 116.000000000000000000
+        Position.Y = 32.000000000000000000
+        Size.Width = 81.000000000000000000
+        Size.Height = 32.000000000000000000
+        Size.PlatformDefault = False
+        StyledSettings = [Family, Style]
+        TabOrder = 0
+        TextSettings.FontColor = xFF1D77F7
+        TextSettings.HorzAlign = Center
+        TextSettings.VertAlign = Trailing
+      end
+      object lblPartida: TLabel
+        Align = Top
+        StyledSettings = []
+        Margins.Top = 10.000000000000000000
+        Position.Y = 10.000000000000000000
+        Size.Width = 296.000000000000000000
+        Size.Height = 23.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.Family = 'Impact'
+        TextSettings.Font.Size = 18.000000000000000000
+        TextSettings.Font.StyleExt = {00040000000000000002000000}
+        TextSettings.FontColor = xFF3126CA
+        TextSettings.HorzAlign = Center
+        Text = 'Iniciar Nova Partida?'
+        TabOrder = 1
+      end
+      object lblData: TLabel
+        Align = Scale
+        StyledSettings = [Family, Size, FontColor]
+        Position.X = 73.000000000000000000
+        Position.Y = 43.000000000000000000
+        Size.Width = 65.000000000000000000
+        Size.Height = 23.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.StyleExt = {00060000000000000004000000}
+        Text = 'DATA:'
+        TabOrder = 2
+      end
+      object rectCancelar: TRectangle
+        Align = Center
+        Fill.Color = xF1848383
+        HitTest = False
+        Margins.Top = 25.000000000000000000
+        Margins.Right = 100.000000000000000000
+        Size.Width = 90.000000000000000000
+        Size.Height = 45.000000000000000000
+        Size.PlatformDefault = False
+        Stroke.Kind = None
+        XRadius = 5.000000000000000000
+        YRadius = 5.000000000000000000
+        object spdCancelar: TSpeedButton
+          Align = Center
+          StyledSettings = [Family, Size, Style]
+          Size.Width = 80.000000000000000000
+          Size.Height = 48.000000000000000000
+          Size.PlatformDefault = False
+          Text = 'CANCELAR'
+          TextSettings.FontColor = claWhite
+          OnClick = spdCancelarClick
+        end
+      end
+      object rectIniciar: TRectangle
+        Align = Center
+        Fill.Color = xFF1DBC45
+        HitTest = False
+        Margins.Left = 100.000000000000000000
+        Margins.Top = 25.000000000000000000
+        Size.Width = 88.000000000000000000
+        Size.Height = 45.000000000000000000
+        Size.PlatformDefault = False
+        Stroke.Kind = None
+        XRadius = 5.000000000000000000
+        YRadius = 5.000000000000000000
+        object spdIniciar: TSpeedButton
+          Align = Center
+          StyledSettings = [Family, Size, Style]
+          Size.Width = 73.000000000000000000
+          Size.Height = 48.000000000000000000
+          Size.PlatformDefault = False
+          Text = 'INICIAR'
+          TextSettings.FontColor = claWhite
+          OnClick = spdIniciarClick
+        end
+      end
+    end
+    object Rectangle1: TRectangle
+      Align = Client
+      Fill.Color = xFF4E4E4E
+      Opacity = 0.300000011920929000
+      Size.Width = 296.000000000000000000
+      Size.Height = 534.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Join = Bevel
+    end
+  end
+  object rectTolbarPartida: TRectangle
+    Align = Top
+    Fill.Color = xFF5531C5
+    HitTest = False
+    Size.Width = 338.000000000000000000
+    Size.Height = 57.000000000000000000
+    Size.PlatformDefault = False
+    Stroke.Kind = None
+    Stroke.Dash = Dot
+    object imgBack: TImage
+      MultiResBitmap.Height = 64
+      MultiResBitmap.Width = 64
+      MultiResBitmap = <
+        item
+          Width = 64
+          Height = 64
+          PNG = {
+            89504E470D0A1A0A0000000D4948445200000040000000400806000000AA6971
+            DE000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+            01B249444154785EEDDA4B4A03411804E0E0217C1CC18D17103782A0A7F17900
+            454490B810CF6170291E439885A84B75E105D2E9CC6835D62C84304E776791BF
+            A96F93904CFFA46A98C96B06222222228BA0699ABDBAAE1F9D739FDEFB17DCBF
+            C5636B7CBA6C087BFE3D432803256C70B33221FC9079671A8FC75FC59680F097
+            CCD9693299BCA384152E2B43DFF02D6C7FCDA5F6C5860FA6D3E91397DB96123E
+            C03BC32B47D8951A3EC0DA3B8EB129277C5555354E829B1C654F4EF800E1F739
+            CA1E84EF7C9FFF0FC21F70943D0A9F41E1AD9A43F8438EB247E13328BC550A9F
+            C17AF8993F63F585F0C71C650F5EFC0EBEA034CC12CD74F8007BFF9E59A221FC
+            09C7D8E5BD7F669E288B167E89B7120B87C0883B355A118700426C679E04ED97
+            801CA7BF71D21451020E852BE64982128E38CA2E95002A015402A8045009A012
+            4025804A00950028E1827992A004BB3F9DB5724AE0DFE35B1C65574E09583BE2
+            18DB524BF0DEBF71847D2925147391542BB6046C3FE4D272F42DC139F78193E0
+            3297950525747E4EE0F5C2EBDCBC4C28E18C79FFE09E2FFB62E91682EEA28887
+            103AFCEF80FB37E860954F8B888888CCD160F003083ED9C4F24F887400000000
+            49454E44AE426082}
+          FileName = 
+            'C:\Users\User\Documents\DelphiProjects\futPaz\mobile\images\volt' +
+            'ar.png'
+        end>
+      Align = Left
+      Margins.Left = 10.000000000000000000
+      Position.X = 10.000000000000000000
+      Size.Width = 40.000000000000000000
+      Size.Height = 57.000000000000000000
+      Size.PlatformDefault = False
+      OnClick = imgBackClick
+    end
+    object imgIniciarPartida: TImage
+      MultiResBitmap.Height = 80
+      MultiResBitmap.Width = 80
+      MultiResBitmap = <
+        item
+          Width = 80
+          Height = 80
+          PNG = {
+            89504E470D0A1A0A0000000D49484452000000500000005008060000008E11F2
+            AD000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+            0E3649444154785EED9C0B94555519C7B9C31D66788D42030DAF114C144801E3
+            6582B440102B02B4D6B2ECEDA3A5A8B15C85E1B2D512B5442B355A8A40D44A94
+            CC403075659A91BC560116ADA5A6822130BC8AC7303C0706A6DF7FFB9DD3BD0C
+            77EE3D8F3B0375FF6BEDFBEDFD7D7BFFF7F79DE7DEFB9C735B14504001051450
+            4001059C9948986C369C3871A20762787D7D7D3FE405C8F349657575751D6A6A
+            6ADAAA4E5959D9C16432B9379148EC23BD8BEA1DE43F902B8A8A8AAA54E7FF06
+            6C9C966CB42B8E1F3F3EE7D8B163EB2947021CEFC2359BEC18529175D36468B2
+            2390E02A119309F84BC5C5C5DD3ED03AEC6383AE46AEE3A8FA3B723DA95A7A1D
+            7148B53D0BA17436A937E501C8811C7D434DEF007715DC4F617F14DB16539FD9
+            60E3F4E60899B773E7CE5A0273D051B377EFDEC3CA5757571FC27E2FD976D624
+            2B54576DD4561CE212A7F282FAC23E97BECFB326671E70BE3D413C545555754C
+            416DDDBAF528E527D05F6AF67328FF0AFB09D96B6B6BB7A1BB9E6CC6D35036D5
+            515DB5515B71884B76E470CAF34FEAF3876473DE39A70508E4AAA3478F565990
+            750431976C4F33A781BA9770C358A5BA02F975E82E37B30FE964B36AAAB74A6D
+            CD9C06F4BDE8F367EA5B75F1650BBA89663E7D81AFA538FEA89C1608F2351CEF
+            6FE68CA06A827AD7701A6EFCA0657D3D3CCF23FA2859DE417554976CD6EB3775
+            06E2C372D710C03393B625663EBD807F9538FB5739AA6B138E4E219B763A52D6
+            869A4ABAD25469C05E4A9A76F0E0C17D48770A2A292F1DEDBE43B6D4AAFB4057
+            CCC6D151FE3553F940A7D3FE76EF7A09D652EE6EE6D30338D44FA789BCE308D9
+            405977C90640DF59D72D36B4EEBA19A17A6C90C75DB84079E9CCDC00D8BAE9BA
+            47BDDF9BAA01A019886FFF141FBE6EA24D5F33352F7064E8E1C387775BA07F44
+            7430D32941FDB1D4E963C54601DF6F48CF5BB1518833B56FF23ADA3B59D18172
+            475D56B0D51F39726417E521666A1EE0403F39228708F45944DAE9857DAA8617
+            C8263F65E8F39BF20BF9195339C8477C5D229B6DC4E63912E9BFD23B6DCDA1A4
+            997CA09BC1B5AB0679AEA99A0CF43986A36D251BE84253F9C0A66BE66F91DEE9
+            DCB43B987E4BBD1B068E2CC5818C7736AAB4B46C605890CF5831562806D29F48
+            1A2DAC692C86D841606EA8A28B321D7FC8D43A6D3E42BA16532C7352025B456A
+            F486932BF0AB3F7E2F908FA6D2462CF76E2CD8669A3ABFC081ABD4A140FEEBA6
+            76C009CD438511A68A0CB8421FC1A9C0D76FCB31E4574DE5A018A417C84F3075
+            7E4007EDB966B81986C0067BC04C0ED82F247D0B53B1A94E1BE05312DF2E41A6
+            9D1D8A41B108C4B61991BF691F9D3DA48E18B6EC91A4FC0733E505F0CF21FDD4
+            8A7981623829A607CD142FD87BBD3558D540184C4CE9346F4B625C9FDE22BD6D
+            C5D821DFBD0D07262936CD7C88CFBF4EC606F6CC3CF5827C5A650EF7AD2AD359
+            DE968CA02F85BFBD1563877C570C8A456562FBB5CAC839AE425C80B3526B6C4A
+            DEDEA113378EA27C8DAB940740DF0EFE322BC60EF9AE18148B95CFD3116871E6
+            3436CC75B831B973E7CEADCACBCB97141515BD27452291785D92FE0749C60D02
+            F81C3385CDB5B5B5EF2B6FEA58E1F9EEC5426C1B2A2A2A9E53ACD8264B171910
+            157188BB190718636A05F86929D87BAF9A2A1640A9A9D64FC49D0A745A8C750F
+            99E2029C4BC50DEFA74CA5B8C64967A38DE843280835F9D7A0F93D847FC492AF
+            909E8BF05E442C3712FAEA4F3F6F8A57CBF4946F51F296FF65531DAB1E09F299
+            542D5E50616A77C0D08F1B5CD3578385DDC0602FCD111972BAA97CD85E5247BD
+            4D150A5068E5E4566F4331FB7883F24566D686BD483AD96CC3DEAA36660E05F9
+            2C3EC5602A1FC47A8F6CC859A60A0FF686F7E8B1C1EC820E9E93411B17D16031
+            2117D0AEDCE311C86BEDAFB5997D48279B55533DB529377360C0F7798FC7543E
+            B08D948DD8DF31553840D44344070E1CD88F489B5D601BCC45FE5FB20B94035F
+            E86933CA3B8A351EA37CB599324275BCB19BDA8AC34C5941DDF349534825A4DB
+            C4A118C80FB62A0EA85BEDDFBFFF80ECD8521FC106038DBF2012F6D28BA67240
+            3FDA96A9647B85A4198A3B1AB0DD49607A88D3D5553E05A89BA4CD7D0C5C8F8B
+            83D3731942CF8D7382EA5A1B3DB482EAF87D644F7906A4FA41BD27D506DD3092
+            8EE81754562C94475B35076C2F59DDF0C33448746A6A23DD6B2A3974F5AE5DBB
+            8E987E3E22EDC8A43C8D0DA839A5DB20D41F4FFAAE3302F43D097E25D23DB143
+            DC4D0A7CB7531BB5350EF7940E91F6E48F7E276B03233FA932F64AF25F764640
+            59EB828AA15E3161F3CF00F43F901EDC6DAAE080E46931407C9DCAC81B3D87B1
+            3D82C87A2127B0D7D486B69D4857DA5DDB4DDC295F66D542431CB6C3846AFC7A
+            159DF7EC7994FA47669C2DD12661B1B81D4ADD1BA547DE201DB605AE6218D0B9
+            5B349523886974E01E8253F68FA86CA0AED608DD350667DCB80BF93B741D5D85
+            18202E718A5BA07CB39972066DEE525B8B711AE5D12A83B5562538B80B6D3492
+            67F403B94E879BCC1C180419DFF0E02488D3B835080F35C4516C3A0AC5035CCC
+            1A139A393838DDDCD336C1E68791E6BDB41F202EA6673B10B12C940A701579AF
+            7BD047A481361493BCF1A8C05DFADF660A0E6D3491E8968E63A77C181E141A5B
+            8913BE91A68A0CB83E214EB8DD3C3D2AE01BE53DDCD7CDC5D4A7444E8B096DDB
+            B61DCB44FB252B46023C4B24F1EDB34E1103E072774FB8173A4544C0B3B475EB
+            D6E3AC181E29A7B0DECB8B05ECDDA122D4201811790E2D0EEF2E0C776C0FCAE1
+            EA28CE48A7B0771381CCBD3E26909FC085FA7ED4A19EBCD14E016F32DE61A60E
+            0D7188CB3843ED10DA693CB810AEDB4C255D4FF166BB8934BA111289C41ECB76
+            3129E29B39C4A7217D5D10C059DFB265CB67958723F269EC71C0B958DC4E1910
+            7074E2C6311EE9AFBE78F1C1B9DB29C280BDE20DA4AF3595882B280FB76228C0
+            3142BCECDD0DA60A0D71880B9F220DCA69DF051AFFD514CA5F142FDBA0D18174
+            B6D3D0AD46C073812B01F6C80E8EC095560C8B559C723B92C9A406D9179B2E30
+            D4561CE2C2AF483E11D37638FC3BAE1733BA465764B29DC2FA9440485BAD880A
+            784F10F862E57134EB0A4C26786DC5254EA78C0FDE0DC9DB06C1C11E76CB59BA
+            1321FC8D4DBE27362D6AB6325560D0FE7271730ABE65AAC0505B7188CB548141
+            F3369CA63F82C3BFA1A12BF24620E8C32F670938E9DE7E87C81F22D0E14CE9C0
+            245305066D93B663C4AD8F6C02416DD4D638422DE60AF0B8392F31F98F32D1B9
+            3B3BB1677D269DF5B60FF16CAE0FDF203B9DD3C42DEDD08186351328CF25353A
+            526F0C70CF83FB3AE49BF06C37754E20BE2EDC793F8A2F3F475E6FEAC08047CF
+            4634CB5A8D2FEE8E8B3FD3C97F0FEE5970477B3A07B9BE00CA696F04058EEAFB
+            904820C83B8C2E1640994839EBB2AE76673D02E1D153AA4DC5C5C5DDC97F9C3D
+            F3673345060EEA11E22D76241F36754EA05D92349676B3F029F270C8033E0D87
+            7305316F26E65EE4A3DF9C70740649D789A74CE580AA273A3D046AD62F82F0A3
+            98146875079FFBE2FB2B48B7F8EA019D1BFB22BF6FAAE8A0931E5A99A9AAAA3A
+            463E755A77933A43DE6EAAACA07AA2AEAE6E150ECE365564C0B916CE3556CC09
+            F8EC5EEB404E31953B2014A32DEF47BBFB9E0C02D67718DA33F34CE5F63C1D8D
+            23E5FC7A2C6D4A19F8BEAF3D6DAAC81057183EFCD6A7B5FE650C8E5F588C8F9B
+            2A3ED0997BF1462BB6E41BBCB87DA68398FA6BC5DD168E7B993A5EB067F4E19E
+            9E80E9F3A940AB31387531EDE720337E301315700FA30F3D6F09B483150B31B9
+            27856086A9E307E4ED38FDBC4F1BEE91A364FDEF751B0375DD431B64DEDE4386
+            DBBB26E7B4CA23DF1503B1B8E19496C428077A8129F0FA191D4CE4D6EE56953D
+            1C3A74A8A6A4A4640BFA4D1425F5B1F3669257D60B8C45F83884FC4A52DCF356
+            1FF8D78D618D5EFED42B6ABA11E82F0574E3ABA4ACBCA6A7E7D4D6D6F668D3A6
+            8DFFEE2197A7FAAE5DBB4EA0ED0BA6CA1FD863DE54CE3D6CB26C46D80B41E3AD
+            79DEA1BE521F0C6542AAEFC4F4B0350F84502BB83858A22389EC203A5EC65ED3
+            7AA1BE17717B1A5B0FEAB83D8DECC580B42BF5D62593C9D04B5741C0F5EC6F4C
+            C1F471E1367CDB883F9B90BAF4A49E19BBF16D01F546E2DB6AE465D43BAAF64D
+            023AEFA6E188EDBD97B551CD9406E9531E398E3575DE401F57A82F7B74DAE0D3
+            58017D2B7C7E51F5744DA78D4EEDA6071DF73DF2DF8F0D17696399290DE8EFB4
+            3A2F9B2A6F501FEA4B7D9A2A0DF2913A8B55472B3994FDC5E266010E0CF13622
+            A7CE0ACA1F36930F4C1DBCB7B9C04053C70E71AB03EBABC167B7E82AF0D1FDBD
+            806DBC58178A43037FFA680820C7907A5CD9E0C573F6BAFB480799369F8E1370
+            2FB03E7E6C2A1F6CACFEDE25C7644EDF2C371970B03B7B778D1CACA9A9394879
+            2A597FA1937CA5CD64D2E6D30236BDE23B59419A2A23544775D5C6540EE214B7
+            FA505FA616B73EF1BAC3FBE41F1FFF4239E3BB8BCD0A1CD3F5C51FE2E0ECEBE8
+            3E66661D21EE5D3CE423A672A0CE60D3A7BD5940FB95A4E55674A0CE22D5551B
+            533988D338E69B4A1B6F10EDDD1B666C5CFD45CAC364433F86683210DC04DDDD
+            CC71FD97C12FD1F5250D50207A6598BCFF7A1BD5F4C7103790D22EE8DA78A465
+            5674A06E1FEA7D456D4CA5FE3A8A53DC6000A91F7D3E41D9FBDB13CD309A6C1C
+            1A0BF05BFF2EF4A09D52EED538B090B199F709C15D563532C4254E71D3C722F5
+            A5B206CA94EFC71EEBF7254D0AE2389720E69C3C63619CB61D31881468512215
+            6A2B0EE3F2A1F53CFAD4426F7E565552106A26120604A3470293094C7F3EE60F
+            5C097E37E55564F5E7636F20DD6C81FC21A4FBF33170166DDB207573D00C47DF
+            900CE4D4BCB4B4B4D4BF1468199E19C593B47D4CF36153FF6F81E075BD1BCD86
+            9C45C06F538E0471C0F5189C7A0D39F4D11C164D76046602816BC56404478D6E
+            32FA03467D82AAFF77399BE190FB7ABCACACEC00F3E86AEAEC21AD27E9750B3D
+            255CCE91B64D750A28A080020A28A080020A0880162DFE03842AC91AF14BDB44
+            0000000049454E44AE426082}
+          FileName = 
+            'C:\projetos\FutPaz\FutPaz\mobile\images\icons8-bola-de-futebol-2' +
+            '-80.png'
+        end>
+      Align = Right
+      HitTest = False
+      Margins.Top = 5.000000000000000000
+      Margins.Right = 7.000000000000000000
+      Margins.Bottom = 5.000000000000000000
+      Position.X = 286.000000000000000000
+      Position.Y = 5.000000000000000000
+      Size.Width = 45.000000000000000000
+      Size.Height = 47.000000000000000000
+      Size.PlatformDefault = False
+      object spdIniciarPartida: TSpeedButton
+        Align = Client
+        Size.Width = 45.000000000000000000
+        Size.Height = 48.000000000000000000
+        Size.PlatformDefault = False
+        OnClick = spdIniciarPartidaClick
+      end
+    end
+    object lbToobar: TLabel
+      Align = Center
+      StyledSettings = [Family]
+      Size.Width = 165.000000000000000000
+      Size.Height = 57.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 18.000000000000000000
+      TextSettings.Font.StyleExt = {00070000000000000004000000}
+      TextSettings.FontColor = claWhite
+      TextSettings.HorzAlign = Center
+      Text = 'Organizar Partida'
+      TabOrder = 0
+    end
+  end
+end

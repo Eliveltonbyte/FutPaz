@@ -172,6 +172,9 @@ begin
     close;
   end;
    limparCamposCapa;
+   lbToobar.Text := 'Organizar Partida';
+    spdIniciarPartida.Visible:= true;
+  imgIniciarPartida.Visible := true;
 end;
 
 procedure TFrmPartida.imgCapaBtnClick(Sender: TObject);
@@ -223,6 +226,7 @@ end;
 procedure TFrmPartida.rectFinalizarClick(Sender: TObject);
 begin
   tbControl.GotoVisibleTab(2);
+  lbToobar.Text := 'Lançar Capa';
 end;
 
 procedure TFrmPartida.btnBuscarPartidaClick(Sender: TObject);
@@ -281,6 +285,9 @@ begin
   BuscarPartida;
   tbControl.TabIndex := 1;
   CloseMenu;
+  lbToobar.Text := 'Lançar Gols';
+  spdIniciarPartida.Visible:= false;
+  imgIniciarPartida.Visible := false;
 end;
 
 procedure TFrmPartida.spdIniciarPartidaClick(Sender: TObject);
